@@ -1,17 +1,28 @@
 ---
 title: Home
----
+notice: 'Under Construction (Aug 2012): You can visit my old site <a href="http://v1.nathanfeaver.com">here</a> =)'
 
-%h1 A Brand New nanoc Site
-%p 
-  You’ve just created a new nanoc site. The page you are looking at right now is the home page for your site. To get started, consider replacing this default homepage with your own customized homepage. Some pointers on how to do so:
-%ul
-  %li
-    %p
-      %strong Change this page’s content
-      by editing the “index.html” file in the “content” directory. This is the actual page content, and therefore doesn’t include the header, sidebar or style information (those are part of the layout).
-  %li
-    %p
-      %strong> Change the layout
-      , which is the “default.html” file in the “layouts” directory, and create something unique (and hopefully less bland).
-%p If you need any help with customizing your nanoc web site, be sure to check out the documentation (see sidebar), and be sure to subscribe to the discussion group (also see sidebar). Enjoy!
+---
+#container
+  %header
+    #title{:rel => "site title"}
+      %strong#site-id
+        NathanFeaver.com
+      .sub-text
+        The Web's Leading Resource on Nathan Feaver!
+  #main
+    -if @item[:notice]
+      #notice.box_round
+        =@item[:notice]
+/    -@items.each do |item|
+/      %br
+/      =item.identifier.inspect
+#sidebar
+  #sidebar-container
+    %img#logo{:src => '/images/logo.png'}
+    -sidebar_categories.attr_sort( :sidebar_item ).each do |category|
+      %h3= link_to(category[:title], category.identifier)
+      %ul
+        -items_of( category ).each do |li|
+          %li= link_to(li[:title], li.identifier)
+  #sidebar-endcap
