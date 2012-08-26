@@ -13,8 +13,6 @@ html, body { font-size: 85%; -webkit-text-size-adjust: 85%; -ms-text-size-adjust
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 body { margin: 0; font-size: 1em; line-height: 1.4; }
 
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
 a { color: #00e; }
 a:visited { color: #551a8b; }
@@ -97,6 +95,10 @@ h1, h2, h3, h4, h5, h6, ul, li {
 	list-style: none;
 }
 
+h2 { 
+  font-size: 175%;
+  margin: 10px 0 7px 0;
+}
 h3 { font-size: 160%; }
 
 #container {
@@ -127,10 +129,21 @@ header {
   }
 }
 
+#nathan_strip {
+  height: 110px;
+  width: 610px;
+  background-color: #373737;
+  img {
+    margin: 5px;
+  }
+  @extend .box_round;
+}
+
 #sidebar {
   float: right;
   #sidebar-container {
-    background-color: #f8f8f8;
+    background-color: #f3f3f3;
+    border-left: #CCC solid 1px;
     width: 250px;
     padding: 25px;
     ul {
@@ -146,7 +159,7 @@ header {
   #sidebar-endcap {
     height: 270px;
     width: 100%;
-    background: url('/images/sidebar_fade.png') repeat-y;
+    background: url('/images/full_sidebar_fade.png') repeat-y;
   }
   a {
     color: inherit;
@@ -156,6 +169,9 @@ header {
     }
   }
 }
+
+::-moz-selection { background: navy; color: #fff; text-shadow: none; }
+::selection { background: navy; color: #fff; text-shadow: none; }
 
 /* =============================================================================
    Non-Semantic Helper Classes

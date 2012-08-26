@@ -1,6 +1,6 @@
 ---
 title: Home
-notice: 'Under Construction (Aug 2012): You can visit my old site <a href="http://v1.nathanfeaver.com">here</a> =)'
+notice: '<strong>Under Construction (Aug 2012):</strong> You can visit my old site <a href="http://v1.nathanfeaver.com">here</a> =)'
 
 ---
 #container
@@ -10,10 +10,21 @@ notice: 'Under Construction (Aug 2012): You can visit my old site <a href="http:
         NathanFeaver.com
       .sub-text
         The Web's Leading Resource on Nathan Feaver!
+  %hr
   #main
     -if @item[:notice]
       #notice.box_round
         =@item[:notice]
+    %h2 A Modern Craftsman
+    #nathan_strip
+      %img{:src => "/images/nathan_strip.png"}
+    %p
+      Hi, I'm Nathan Feaver, and this is my website!  I love to build things with my computer.  
+      Starting with nothing, it is a joy to see a website come together with each new line of code.  
+      The more websites I build, the more I realize that I am becoming a craftsman: gaining experience
+      with a variety of tools to make everyday objects and ideas into something functional and beautiful.
+    %p
+      This site is the record of my crossing from journeyman to master.
 /    -@items.each do |item|
 /      %br
 /      =item.identifier.inspect
