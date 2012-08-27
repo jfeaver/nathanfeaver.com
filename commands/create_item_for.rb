@@ -11,8 +11,9 @@ flag   :h, :help,  'show help for this command' do |value, cmd|
 end
 
 run do |opts, args, cmd|
-  if args.length == 2
+  if args.length >= 2
     category, title = args
+    link = (args[2] ? args[2] : '')
     path_category, path_title = args.collect {|attr| attr.gsub(/\s/,'_').downcase }
   else
     puts 'Please include a category and title in your command:'
@@ -31,10 +32,14 @@ run do |opts, args, cmd|
     exit 1
   end
 
-  rating = ''
+  extra = ''
   landscape = 'true'
-  if path_category == 'bookshelf'
-    rating = "\nrating: "
+  case path_category
+  when 'bookshelf'
+    extra = "\nrating: "
+    landscape = 'false'
+  when 'portfolio'
+    extra = "\nlink: #{link}"
     landscape = 'false'
   end
 
@@ -46,7 +51,7 @@ featured_image: /images/#{path_title}.png
 landscape: #{landscape}
 techs:
   -
-description: ''#{rating}
+description: ""#{extra}
 ---
 TODO: Add content to `#{path}`.
 TEMPLATE

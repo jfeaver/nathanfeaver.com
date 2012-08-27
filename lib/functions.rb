@@ -41,9 +41,9 @@ def get_rating_image rating
   "<img class='rating' src='#{get_rating_image_path rating}' />"
 end
 
-def get_featured_image item
+def get_featured_image item, img_class = ''
   image_item = @items.find {|i| i.identifier == "/images#{item.identifier}"}
-  img_class = 'featured'
+  img_class += ' featured'
   img_class += ' landscape' if item[:landscape]
   tag = "<img class='#{img_class}' src='/"
   if image_item
@@ -55,5 +55,18 @@ def get_featured_image item
   tag += item[:landscape] ? 'width=' : 'height'
   tag += "'175px' />"
 end
-    
 
+def get_item_by_id identifier
+  @items.find {|i| i.identifier == identifier }
+end
+
+def get_category_by_id identifier
+  get_item_by_id identifier
+end
+
+def get_category_of item
+  return nil unless item.respond_to?( :identifier )
+  return item if category? item
+  return false if item.identifier == '/'
+  return get_category_by_id( item.identifier.match(/^\/\w+\//)[0] )
+end

@@ -22,6 +22,10 @@ compile '/' do
   layout 'root'
 end
 
+compile '/portfolio/*' do
+  # don't create pages for these
+end
+
 compile '*' do
   if item.binary?
     # don’t filter binary items
@@ -36,6 +40,10 @@ end
 
 route '/css/*/' do
   item.identifier.chop + '.css'
+end
+
+route '/portfolio/*' do
+  nil
 end
 
 route '*' do

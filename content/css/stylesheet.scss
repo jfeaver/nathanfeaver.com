@@ -94,6 +94,18 @@ h1, h2, h3, h4, h5, h6, ul, li {
 	padding: 0;
 	list-style: none;
 }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+  font-weight: normal;
+  a { 
+    color: inherit !important;
+    font-weight: normal;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 h2 { 
   font-size: 175%;
@@ -101,6 +113,7 @@ h2 {
 }
 
 h3 { font-size: 160%; }
+h4 { font-size: 125%; }
 
 a {
   text-decoration: none;
@@ -116,6 +129,7 @@ a {
 #container {
   padding-left: 20px;
   float: left;
+  margin-bottom: 100px;
 }
 
 header {
@@ -146,10 +160,14 @@ header {
     background-color: Gold;
   }
   &.item img.featured { 
-    display: block;
-    float: left;
-    @extend img.border 
+    @extend .simple_border
   }
+}
+
+.simple_border {
+  display: block;
+  float: left;
+  @extend img.border 
 }
 
 #sidebar {
@@ -216,6 +234,7 @@ header {
   li {
     height: 200px;
     width: 176px;
+    padding: 7px;
     float: left;
     span {
       text-align: center;
@@ -224,6 +243,26 @@ header {
       font-weight: bold;
     }
     @extend img.border;
+    @extend .box_round;
+  }
+}
+
+/* =============================================================================
+   Portfolio
+   ========================================================================== */
+
+#portfolio {
+  a.underline_h { 
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+    &:hover h4 { text-decoration: underline; }
+  }
+  li {
+    margin-bottom: 5px;
+  }
+  .portfolio_piece_info {
+    margin-left: 190px;
   }
 }
 
@@ -233,9 +272,7 @@ header {
 
 img.border {
   border: 1px solid gray;
-  padding: 7px;
   margin: 4px;
-  @extend .box_round;
 }
 .box_round {
   -webkit-border-radius: 5px; /* Safari 3-4, iOS 1-3.2, Android \u22641.6 */
