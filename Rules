@@ -25,9 +25,12 @@ end
 compile '*' do
   if item.binary?
     # don’t filter binary items
+  elsif category? @item 
+    filter :haml
+    layout 'category_page'
   else
     filter :haml
-    layout 'default'
+    layout 'item'
   end
 end
 

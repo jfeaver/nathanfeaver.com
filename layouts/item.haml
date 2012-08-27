@@ -1,9 +1,12 @@
 =render '_page_header'
 #container
   =render '_header'
-  #main
+  #main.item
     -if @item[:notice]
       #notice.box_round
         =@item[:notice]
+    =get_featured_image @item
+    -if @item[:rating]
+      =get_rating_image @item[:rating]
     =yield
 =render '_sidebar'

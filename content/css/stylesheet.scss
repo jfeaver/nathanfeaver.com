@@ -145,16 +145,11 @@ header {
     padding: 4px 8px;
     background-color: Gold;
   }
-}
-
-#nathan_strip {
-  height: 110px;
-  width: 610px;
-  background-color: #373737;
-  img {
-    margin: 5px;
+  &.item img.featured { 
+    display: block;
+    float: left;
+    @extend img.border 
   }
-  @extend .box_round;
 }
 
 #sidebar {
@@ -189,9 +184,59 @@ header {
 ::selection { background: navy; color: #fff; text-shadow: none; }
 
 /* =============================================================================
+   Home Page
+   ========================================================================== */
+
+#nathan_strip {
+  height: 110px;
+  width: 610px;
+  background-color: #373737;
+  img {
+    margin: 5px;
+  }
+  @extend .box_round;
+}
+
+/* =============================================================================
+   Category Pages
+   ========================================================================== */
+
+#item_list {
+  a { 
+    color: black;
+    &:hover li span{ text-decoration: underline; }
+  }
+  img { 
+    margin: auto; 
+    display: block;
+    &.landscape {
+      margin-top: 20px;
+    }
+  }
+  li {
+    height: 200px;
+    width: 176px;
+    float: left;
+    span {
+      text-align: center;
+      display: block;
+      padding: 8px;
+      font-weight: bold;
+    }
+    @extend img.border;
+  }
+}
+
+/* =============================================================================
    Non-Semantic Helper Classes
    ========================================================================== */
 
+img.border {
+  border: 1px solid gray;
+  padding: 7px;
+  margin: 4px;
+  @extend .box_round;
+}
 .box_round {
   -webkit-border-radius: 5px; /* Safari 3-4, iOS 1-3.2, Android \u22641.6 */
           border-radius: 5px; /* Opera 10.5, IE9, Safari 5, Chrome, Firefox 4+, iOS 4, Android 2.1+ */

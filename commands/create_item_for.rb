@@ -31,14 +31,22 @@ run do |opts, args, cmd|
     exit 1
   end
 
+  rating = ''
+  landscape = 'true'
+  if path_category == 'bookshelf'
+    rating = "\nrating: "
+    landscape = 'false'
+  end
+
   template = <<TEMPLATE
 ---
 title: #{title}
 created_at: #{Date.today.to_s}
-featured_image: /images/
+featured_image: /images/#{path_title}.png
+landscape: #{landscape}
 techs:
   -
-description: ''
+description: ''#{rating}
 ---
 TODO: Add content to `#{path}`.
 TEMPLATE

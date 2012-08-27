@@ -1,0 +1,16 @@
+=render '_page_header'
+#container
+  =render '_header'
+  #main
+    -if @item[:notice]
+      #notice.box_round
+        =@item[:notice]
+    %h1= @item[:title]
+    #item_list
+      %ul
+        -items_of( @item ).each do |category_item|
+          %a{:href => category_item.identifier}
+            %li
+              =get_featured_image category_item
+              %span= category_item[:title]
+=render '_sidebar'

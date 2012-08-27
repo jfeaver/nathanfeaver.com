@@ -18,4 +18,42 @@ def items_of category
   @items.select {|item| item.identifier.match( /^#{category.identifier}\w+\/$/ )}.attr_sort( :created_at )
 end
 
+def category? item
+  item.identifier.match(/^\/\w+\/$/)
+end
+
+def get_rating_image_path rating
+  path = '/images/ratings/'
+  case rating
+  when 0
+    path += 'double_thumbs_down'
+  when 1
+    path += 'thumbs_down'
+  when 2
+    path += 'thumbs_up'
+  when 3
+    path += 'double_thumbs_up'
+  end
+  path += '.gif'
+end
+
+def get_rating_image rating
+  "<img class='rating' src='#{get_rating_image_path rating}' />"
+end
+
+def get_featured_image item
+  image_item = @items.find {|i| i.identifier == "/images#{item.identifier}"}
+  img_class = 'featured'
+  img_class += ' landscape' if item[:landscape]
+  tag = "<img class='#{img_class}' src='/"
+  if image_item
+    tag += image_item.raw_filename.match(/content\/(.+)/)[1]
+  else
+    tag += "images/no_image.png"
+  end
+  tag += "' "
+  tag += item[:landscape] ? 'width=' : 'height'
+  tag += "'175px' />"
+end
+    
 
