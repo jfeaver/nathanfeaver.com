@@ -3,37 +3,20 @@ title: Home
 notice: '<strong>Under Construction (Aug 2012):</strong> You can visit my old site <a href="http://v1.nathanfeaver.com">here</a> =)'
 
 ---
-#container
-  %header
-    #title{:rel => "site title"}
-      %strong#site-id
-        NathanFeaver.com
-      .sub-text
-        The Web's Leading Resource on Nathan Feaver!
-  %hr
-  #main
-    -if @item[:notice]
-      #notice.box_round
-        =@item[:notice]
-    %h2 A Modern Craftsman
-    #nathan_strip
-      %img{:src => "/images/nathan_strip.png"}
-    %p
-      Hi, I'm Nathan Feaver, and this is my website!  I love to build things with my computer.  
-      Starting with nothing, it is a joy to see a website come together with each new line of code.  
-      The more websites I build, the more I realize that I am becoming a craftsman: gaining experience
-      with a variety of tools to make everyday objects and ideas into something functional and beautiful.
-    %p
-      This site is the record of my crossing from journeyman to master.
-/    -@items.each do |item|
-/      %br
-/      =item.identifier.inspect
-#sidebar
-  #sidebar-container
-    %img#logo{:src => '/images/logo.png'}
-    -sidebar_categories.attr_sort( :sidebar_item ).each do |category|
-      %h3= link_to(category[:title], category.identifier)
-      %ul
-        -items_of( category ).each do |li|
-          %li= link_to(li[:title], li.identifier)
-  #sidebar-endcap
+/%h2 About
+#nathan_strip
+  %img{:src => "/images/nathan_strip.png"}
+%p
+  Hi, I'm Nathan Feaver and this is my website.  My wife, Amy, and I live along the creek
+  path in Boulder, Colorado (possibly the best place ever?).  We love getting outdoors:
+  biking, climbing, soccer, skiing, and disc golf for me.
+%p
+  I've been building websites as a professional freelancer since mid-2011.  I tend to get
+  a bit nerdy when working with backend Rails but enjoy being able to work on the whole
+  stack.  I'll attack a new widget with some JavaScript, take advantage of 
+  sharp looking CSS frameworks, and write a deployment script all in a day's work.
+%strong Technical Expertise:
+CSS + HTML, WordPress, 
+=succeed(',') do
+  =link_to('Nanoc', 'http://nanoc.stoneship.org')
+Git, Ruby on Rails, JavaScript

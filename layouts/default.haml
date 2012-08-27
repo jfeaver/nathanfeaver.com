@@ -1,30 +1,9 @@
-!!!
-%html{:lang => "en"}
-  %head
-    %meta{:charset => "utf-8"}/
-    %title
-      = succeed ' -' do
-        = @item[:title]
-      NathanFeaver.com
-
-    %link{:href => "/css/style.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
-    / you don't need to keep this, but it's cool for stats!
-    %meta{:content => "nanoc " + Nanoc::VERSION, :name => "generator"}/
-  %body
-    #main
-      = yield
-    #sidebar
-      %h2 Documentation
-      %ul
-        %li
-          %a{:href => "http://nanoc.stoneship.org/docs/"} Documentation
-        %li
-          %a{:href => "http://nanoc.stoneship.org/docs/3-getting-started/"} Getting Started
-      %h2 Community
-      %ul
-        %li
-          %a{:href => "http://groups.google.com/group/nanoc/"} Discussion Group
-        %li
-          %a{:href => "irc://chat.freenode.net/#nanoc"} IRC Channel
-        %li
-          %a{:href => "http://projects.stoneship.org/trac/nanoc/"} Wiki
+=render '_page_header'
+#container
+  =render '_header'
+  #main
+    -if @item[:notice]
+      #notice.box_round
+        =@item[:notice]
+    =yield
+=render '_sidebar'

@@ -4,3 +4,5 @@ output/
 tmp/
 *.log
 .sass-cache/
+.s3deploy.sh
+

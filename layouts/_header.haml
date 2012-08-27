@@ -1,0 +1,10 @@
+%header
+  #title{:rel => "site title"}
+    %strong#site-id
+      =link_to('NathanFeaver.com', '/')
+    .sub-text
+      The Web's Leading Resource on Nathan Feaver!
+  -unless @item.identifier == '/'
+    #home
+      =link_to('Go Home', '/')
+%hr
