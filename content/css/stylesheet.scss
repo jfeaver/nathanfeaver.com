@@ -260,9 +260,11 @@ header {
   }
   li {
     margin-bottom: 5px;
+    strong { font-size: 110%; }
   }
   .portfolio_piece_info {
-    margin-left: 190px;
+    margin: 0 0 30px 190px;
+    h4 { margin: 5px 0; }
   }
 }
 

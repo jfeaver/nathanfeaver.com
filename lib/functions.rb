@@ -14,13 +14,23 @@ end
 
 # Get items from a particular category
 def items_of category
-  regex = '/^\/' + category.identifier[1..-1] + '\/\w+\/$/'
   @items.select {|item| item.identifier.match( /^#{category.identifier}\w+\/$/ )}.attr_sort( :created_at )
 end
 
 def category? item
   item.identifier.match(/^\/\w+\/$/)
 end
+=begin
+module Nanoc
+  class Item
+    def self.category?
+      self.identifier.match(/^\/\w+\/$/)
+    end
+    public :category?
+  end
+end
+=end
+############### GET HTML Functions (links and such)  #####################
 
 def get_rating_image_path rating
   path = '/images/ratings/'
@@ -55,6 +65,8 @@ def get_featured_image item, img_class = ''
   tag += item[:landscape] ? 'width=' : 'height'
   tag += "'175px' />"
 end
+
+############### GET Nanoc::Item Functions #####################
 
 def get_item_by_id identifier
   @items.find {|i| i.identifier == identifier }

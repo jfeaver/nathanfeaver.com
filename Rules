@@ -22,8 +22,12 @@ compile '/' do
   layout 'root'
 end
 
-compile '/portfolio/*' do
-  # don't create pages for these
+compile '/portfolio/' do
+
+end
+
+compile '/portfolio/*/' do
+  # don't create these pages
 end
 
 compile '*' do
