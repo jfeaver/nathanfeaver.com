@@ -5,7 +5,7 @@
     -category = get_category_of @item
     %h3= link_to(category[:title], category)
     %ul
-      -items_of( category ).each do |li|
+      -items_of( category ).reverse.each do |li|
         %li= link_to(li[:title], li)
   #sidebar-endcap
 

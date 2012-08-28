@@ -1,8 +1,8 @@
 module Enumerable
   def attr_sort symbol
-    # TODO - if sortable by integers
     self.sort_by do |item|
       item[symbol]
+
 =begin
       if item[symbol].respond_to?(:to_i)
         # Attribute is an integer
