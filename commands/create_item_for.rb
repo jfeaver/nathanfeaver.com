@@ -36,11 +36,10 @@ run do |opts, args, cmd|
   landscape = 'true'
   case path_category
   when 'bookshelf'
-    extra = "\nrating: "
+    extra = "\nrating: \nauthor: "
     landscape = 'false'
   when 'portfolio'
     extra = "\nlink: #{link}"
-    landscape = 'false'
   end
 
   template = <<TEMPLATE
@@ -51,7 +50,8 @@ featured_image: /images/#{path_title}.png
 landscape: #{landscape}
 techs:
   -
-description: ""#{extra}
+description: 
+  - ""#{extra}
 ---
 TODO: Add content to `#{path}`.
 TEMPLATE

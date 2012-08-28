@@ -15,7 +15,10 @@
             =portfolio_piece[:created_at].strftime("%B %Y")
           %li
             %strong Description:
-            =portfolio_piece[:description]
-          %li
-            %strong Link:
-            =link_to( portfolio_piece[:title], portfolio_piece[:link] )
+            -portfolio_piece[:description].each do |p|
+              %p
+                =p
+          -if portfolio_piece[:link]
+            %li
+              %strong Link:
+              =link_to( portfolio_piece[:title], portfolio_piece[:link] )
