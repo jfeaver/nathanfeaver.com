@@ -8,5 +8,7 @@
     =get_featured_image @item
     -if @item[:rating]
       =get_rating_image @item[:rating]
+    %h1= @item[:title]
+    %span.date= "Last Updated: #{@item[:created_at].strftime('%b. %d, %Y')}"
     =yield
 =render '_sidebar'
