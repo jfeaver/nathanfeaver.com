@@ -3,11 +3,20 @@
   %head
     %meta{:charset => "utf-8"}/
     %title
-      = succeed ' -' do
-        = @item[:title]
-      NathanFeaver.com
-
-    %link{:href => "/css/stylesheet.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+      -if @custom_title
+        =@custom_title
+      -else
+        = succeed ' -' do
+          = @item[:title]
+        NathanFeaver.com
+    %link{ :href => "/css/stylesheet.css", :media => "screen", :rel => "stylesheet", :type => "text/css" }/
+    -if @item[:description]
+      %meta{ :content => @item[:description], :name => 'Description' }/
+    -else
+      %meta{ :content => 'An online home for the creative works of Nathan Feaver.', :name => 'Description' }/
+    %meta{ :content => 'width=device-width', :name => 'viewport' }/
+    %meta{ 'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
     / you don't need to keep this, but it's cool for stats!
-    %meta{:content => "nanoc " + Nanoc::VERSION, :name => "generator"}/
+    %meta{ :content => "nanoc " + Nanoc::VERSION, :name => "generator" }/
+    %link{ :href => '/favicon.ico', :rel => 'shortcut icon' }/
   %body
