@@ -225,7 +225,7 @@ header {
    Category Pages
    ========================================================================== */
 
-#item_list {
+.item_list {
   a { 
     color: black;
     &:hover li span{ text-decoration: underline; }
@@ -238,6 +238,7 @@ header {
     }
   }
   li {
+    font-size: 85%;
     height: 200px;
     width: 176px;
     padding: 7px;

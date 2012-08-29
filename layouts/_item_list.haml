@@ -1,0 +1,9 @@
+-(@category = @category ? ( get_category_of @category ) : ( get_category_of @item )) unless category? @category
+.item_list
+  %ul
+    -items_of( @category ).each do |category_item|
+      %a{:href => category_item.identifier}
+        %li
+          =get_featured_image category_item
+          %span= category_item[:title]
+

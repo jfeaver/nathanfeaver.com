@@ -17,8 +17,9 @@ def items_of category
   @items.select {|item| item.identifier.match( /^#{category.identifier}\w+\/$/ )}.attr_sort( :created_at )
 end
 
+# Return the category if it is one, false otherwise
 def category? item
-  item.identifier.match(/^\/\w+\/$/)
+  return (item.identifier.match(/^\/\w+\/$/) ? item : false)
 end
 =begin
 module Nanoc
