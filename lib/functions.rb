@@ -66,6 +66,11 @@ def get_featured_image item, img_class = ''
   tag += "'175px' />"
 end
 
+def update hash
+  template = ''
+  template += "<h4>#{hash[:title]}</h4>\n<span class='date'>Added: #{Date.parse(hash[:date]).strftime('%b. %d, %Y')}</span>\n" unless hash[:first]
+end
+
 ############### GET Nanoc::Item Functions #####################
 
 def get_item_by_id identifier
