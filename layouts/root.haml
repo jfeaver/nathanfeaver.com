@@ -18,21 +18,4 @@
     =yield
     %hr
     =render '_portfolio_list'
-#sidebar
-  #sidebar-container
-    %a{:href => '/'}
-      %img#logo{:src => '/images/logo.png'}
-    / List all categories on the sidebar, sorting them by value in :sidebar_item
-    -sidebar_categories.each do |category|
-      %h3= link_to(category[:title], category)
-      %ul
-        -items_of( category ).reverse[0..4].each do |li|
-          %li= link_to(li[:title], li)
-    %h3 Other
-    %ul
-      %li nathan .at. nathanfeaver.com
-      %li
-        =link_to('My GitHub Account', 'http://github.com/jfeaver')
-      %li
-        =link_to('Resume - Summer 2012', 'documents/resume.pdf')
-  #sidebar-endcap
+=render '_sidebar'
