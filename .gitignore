@@ -6,5 +6,5 @@ tmp/
 .sass-cache/
 .s3deploy.sh
 content/
-!content/css/
+!content/css/*
 
