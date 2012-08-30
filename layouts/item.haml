@@ -6,9 +6,15 @@
       #notice.box_round
         =@item[:notice]
     =get_featured_image @item
-    -if @item[:rating]
-      =get_rating_image @item[:rating]
     %h1= @item[:title]
+    -if @item[:rating]
+      .rating
+        %strong Rated:
+        =get_rating_image @item[:rating]
+    -if @item[:author]
+      .author
+        %strong Written by:
+        =@item[:author]
     %span.date= "Last Updated: #{@item[:created_at].strftime('%b. %d, %Y')}"
     =yield
 =render '_sidebar'

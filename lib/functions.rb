@@ -49,7 +49,7 @@ def get_rating_image_path rating
 end
 
 def get_rating_image rating
-  "<img class='rating' src='#{get_rating_image_path rating}' />"
+  "<img src='#{get_rating_image_path rating}' />"
 end
 
 def get_featured_image item, img_class = ''
@@ -68,8 +68,9 @@ def get_featured_image item, img_class = ''
 end
 
 def update hash
-  template = ''
-  template += "<h4>#{hash[:title]}</h4>\n<span class='date'>Added: #{Date.parse(hash[:date]).strftime('%b. %d, %Y')}</span>\n" unless hash[:first]
+  template = "<h4>#{hash[:title]}</h4>\n"
+  template += "<span class='date'>Added: #{Date.parse(hash[:date]).strftime('%b. %d, %Y')}</span>\n" unless hash[:first]
+  template
 end
 
 ############### GET Nanoc::Item Functions #####################
