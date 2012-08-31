@@ -52,7 +52,8 @@ landscape: #{landscape}
 techs:
   -
 description: 
-  - ""#{extra}
+  - ""
+keywords: []#{extra}
 ---
 TODO: Add content to `#{path}`.
 TEMPLATE
