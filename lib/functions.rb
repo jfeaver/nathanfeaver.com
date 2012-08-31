@@ -53,7 +53,7 @@ def get_rating_image rating
 end
 
 def get_featured_image item, img_class = ''
-  image_item = @items.find {|i| i.identifier == "/images#{item.identifier}"}
+  image_item = @items.find {|i| i.identifier == item[:featured_image]}
   img_class += ' featured'
   img_class += ' landscape' if item[:landscape]
   tag = "<img class='#{img_class}' src='/"
