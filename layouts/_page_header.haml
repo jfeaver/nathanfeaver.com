@@ -14,8 +14,6 @@
       %meta{ :content => @item[:description][0], :name => 'description' }/
     -else
       %meta{ :content => 'An online home for the creative works of Nathan Feaver.', :name => 'Description' }/
-    -if keywords? @item
-      %meta{ :content => (get_keywords @item), :name => 'keywords' }
     %meta{ :content => 'width=device-width', :name => 'viewport' }/
     %meta{ 'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
     / you don't need to keep this, but it's cool for stats!
