@@ -22,13 +22,15 @@ compile '/' do
   layout 'root'
 end
 
-compile '/portfolio/' do
-
+compile '/beer_report/' do
+  filter :haml
+  layout 'beer_page'
 end
 
-compile '/portfolio/*/' do
-  # don't create these pages
-end
+compile '/portfolio/' do end
+compile '/portfolio/*/' do end
+
+compile '/js/*' do end
 
 compile '*' do
   if item.binary?
@@ -44,6 +46,10 @@ end
 
 route '/css/*/' do
   item.identifier.chop + '.css'
+end
+
+route '/js/*' do
+  item.identifier.chop + '.js'
 end
 
 route '/portfolio/*' do

@@ -1,0 +1,26 @@
+-br = @item[:beer_report]
+%table#beer_report
+  %colgroup
+    %col.number
+    -br[:headings].each do |heading|
+      %col{:class => heading.match(/\w+/)[0].downcase}
+  %thead
+    %tr
+      %th.number No.
+      -br[:headings].each do |heading|        
+        -if %w{ Date Brewery }.include? heading
+          %th{:class => heading.downcase}
+            = heading
+        -else
+          %th{:class => heading.downcase}= heading
+  %tbody
+    -br[:beers].each_with_index do |beer, i|
+      %tr
+        %td.number= (i+1).to_s
+        -beer.each_with_index do |attr, j|
+          -if j == 3 && date = attr.parsable_date?
+            %td.date= date.strftime("%D")
+          -elsif j == 5
+            %td.city= attr.state_first
+          -else
+            %td{:class => br[:headings][j].downcase}=attr

@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}/
     %title= @item[:title]
-    %link{:href => "/cold_beer_style.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/beer_report.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
     / you don't need to keep this, but it's cool for stats!
     %meta{:content => "nanoc #{Nanoc::VERSION}", :name => "generator"}/
     %script{ :type => "text/javascript", :src => "/js/gs_sortable.js" }
@@ -15,7 +15,9 @@
   %body
     #main
       %span.go_back
-        %a{ :href => "javascript:history.go(-1)", :onMouseOver => "self.status=document.referrer;return true"} Go Back
+        =link_to('Hobbies', '/hobbies/')
+        \>
+        =link_to('Beer Tasting', '/hobbies/beer_tasting/')
       %span.go_home
         %a{ :href => "/" }NathanFeaver.com
       %h1= @item[:title]
