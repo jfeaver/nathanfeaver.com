@@ -24,11 +24,30 @@ end
 
 compile '/beer_report/' do
   filter :haml
-  layout 'beer_page'
+  layout 'beer'
 end
 
-compile '/portfolio/' do end
-compile '/portfolio/*/' do end
+compile '/about/' do
+  filter :haml
+  layout 'about'
+end
+
+compile '/portfolio/' do
+  filter :haml
+  layout 'about'
+end
+
+compile '/portfolio/*' do end
+
+compile '/blog/*' do
+  if item.identifier == '/blog/'
+    filter :haml
+    layout 'about'
+  else
+    filter :haml
+    layout 'blog_post'
+  end
+end
 
 compile '/js/*' do end
 
@@ -37,7 +56,7 @@ compile '*' do
     # don’t filter binary items
   elsif category? @item 
     filter :haml
-    layout 'category_page'
+    layout 'category'
   else
     filter :haml
     layout 'item'
@@ -53,7 +72,11 @@ route '/js/*' do
 end
 
 route '/portfolio/*' do
-  nil
+  if item.identifier == '/portfolio/'
+    item.identifier + 'index.html'
+  else
+    nil
+  end
 end
 
 route '*' do

@@ -1,19 +1,23 @@
 #sidebar
   #sidebar-container
-    %a{:href => '/'}
-      %img#logo{:src => '/images/logo.png'}
-    / List all categories on the sidebar, sorting them by value in :sidebar_item
-    -sidebar_categories.each do |category|
-      %h3= link_to(category[:title], category)
-      %ul
-        -items_of( category ).reverse.each_with_index do |li, i|
-          %li= link_to(li[:title], li)
-          -break if (i > 3) && (get_category_of( li ).inspect != (get_category_of( @item ).inspect))
-    %h3 Other
-    %ul
-      %li nathan .at. nathanfeaver.com
-      %li
-        =link_to('My GitHub Account', 'http://github.com/jfeaver')
-      %li
-        =link_to('Resume - Summer 2012', 'documents/resume.pdf')
+    #sidebar-header
+      %h3 Navigation
+    #sidebar-sections
+      .sidebar_section
+        %h4= link_to('Home', '/')
+      -# List all categories on the sidebar, sorting them by value in :sidebar_item
+      -sidebar_categories.each do |category|
+        .sidebar_section
+          %h4
+            -unless category.identifier == '/blog/'
+              = link_to(category[:title], category)
+            -else
+              = link_to(category[:title] + ' - Blog', category)
+          %ul
+            -items_of( category ).reverse.each_with_index do |li, i|
+              %li= link_to(li[:title], li)
+              -break if (i > 3) && (get_category_of( li ).inspect != (get_category_of( @item ).inspect))
+
+      .sidebar_section
+        %h4= link_to('Portfolio', '/portfolio/')
   #sidebar-endcap

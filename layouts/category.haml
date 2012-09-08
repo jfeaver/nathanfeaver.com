@@ -1,4 +1,4 @@
-=render '_page_header', :custom_title => 'Welcome to NathanFeaver.com'
+=render '_page_header'
 =render '_header'
 .inside
   #container
@@ -6,6 +6,5 @@
       -if @item[:notice]
         #notice.box_round
           =@item[:notice]
-      =render '_blog_list'
-      %hr
+      =render '_item_list', :category => @item
   =render '_sidebar'

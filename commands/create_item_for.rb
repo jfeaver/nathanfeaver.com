@@ -51,8 +51,7 @@ featured_image: /images#{identifier}
 landscape: #{landscape}
 techs:
   -
-description: 
-  - ""
+description: ""
 keywords: []#{extra}
 ---
 TODO: Add content to `#{path}`.

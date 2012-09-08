@@ -6,6 +6,5 @@
       -if @item[:notice]
         #notice.box_round
           =@item[:notice]
-      =render '_blog_list'
-      %hr
+      =yield
   =render '_sidebar'

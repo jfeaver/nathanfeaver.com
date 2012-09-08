@@ -90,6 +90,8 @@ def get_category_of item
   return get_category_by_id( item.identifier.match(/^\/\w+\//)[0] )
 end
 
+############### GET Nanoc::Item Attributes Functions #####################
+
 def keywords? item
   return true if item[:keywords] && item[:keywords].reject_nil
   return true if item[:techs] && item[:techs].reject_nil

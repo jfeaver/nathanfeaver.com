@@ -1,6 +1,6 @@
 
 #portfolio
-  %h2 Portfolio
+  %h2 Freelance Work
   -items_of( get_category_by_id '/portfolio/' ).reverse.each do |portfolio_piece|
     .portfolio_piece.clearfix
       =get_featured_image portfolio_piece, 'simple_border'

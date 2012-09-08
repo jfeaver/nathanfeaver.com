@@ -1,10 +1,18 @@
+-category = get_category_of @item
 %header
-  #title{:rel => "site title"}
-    %strong#site-id
-      =link_to('NathanFeaver.com', '/')
-    .sub-text
-      The Web's Leading Resource on Nathan Feaver!
-  -unless @item.identifier == '/'
-    #home
-      =link_to('Go Home', '/')
-%hr
+  .inside
+    #site-id
+      %a{:href => '/'}
+        %img{:src => '/images/logo.png'}
+    #title-container
+      %strong#page-title
+        -if category
+          =category[:title]
+        -else
+          =@item[:title]
+      .sub-text
+        -if category
+          =category[:description]
+        -else
+          =@item[:description]
+
