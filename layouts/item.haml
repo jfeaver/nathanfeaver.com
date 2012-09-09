@@ -17,7 +17,8 @@
           .author
             %strong Written by:
             =@item[:author]
-        %span.date= "Last Updated: #{@item[:created_at].strftime('%b. %d, %Y')}"
+        -last = (@item[:last_updated] || @item[:created_at])
+        %span.date= "Last Updated: #{last.strftime('%b. %d, %Y')}"
         =yield
       %hr
 

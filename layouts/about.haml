@@ -3,8 +3,8 @@
 .inside
   #container
     #main
-      -if @item[:notice]
+      -if @item[:notice] || '/about/' == @item.identifier
         #notice.box_round
-          =@item[:notice]
+          =@item[:notice] || get_notice( :from => @from )
       =yield
   =render '_sidebar'

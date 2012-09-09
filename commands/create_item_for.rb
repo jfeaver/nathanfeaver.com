@@ -15,6 +15,7 @@ run do |opts, args, cmd|
     category, title = args
     link = (args[2] ? args[2] : '')
     path_category, path_title = args.collect {|attr| attr.gsub(/\s/,'_').downcase }
+    # Create a short path_title
     identifier = "/#{path_category}/#{path_title}/"
   else
     puts 'Please include a category and title in your command:'
@@ -45,7 +46,7 @@ run do |opts, args, cmd|
 
   template = <<TEMPLATE
 ---
-title: #{title}
+title: "#{title}"
 created_at: #{Date.today.to_s}
 featured_image: /images#{identifier}
 landscape: #{landscape}

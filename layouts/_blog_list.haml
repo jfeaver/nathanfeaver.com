@@ -1,2 +1,7 @@
--(items_of get_item_by_id( '/blog/' )).each do |item|
-  =render '_blog_post_excerpt', :post => item
+-blog_posts = items_of get_item_by_id( '/blog/' )
+-args = Hash[:full_length, true]
+-blog_posts.each do |item|
+  -args[:post] = item
+  =render '_blog_post', args
+  -if args[:full_length]
+    -args.delete :full_length

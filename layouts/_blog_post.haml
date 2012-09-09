@@ -1,0 +1,12 @@
+-post = (@post ? @post : items_of( get_item_by_id '/blog/' ).first)
+
+%h2= post[:title]
+-if post[:subtitle]
+  %span.title-sub-text= "- #{post[:subtitle]}"
+%span.date
+  -last = (post[:last_updated] || post[:created_at])
+  Last Updated: 
+  %time= last.strftime('%b. %d, %Y')
+%hr
+%article
+  =render_item post

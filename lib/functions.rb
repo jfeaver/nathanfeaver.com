@@ -73,6 +73,28 @@ def update hash
   template
 end
 
+def render_item item
+  item.reps.find {|rep| rep.name == :default }.compiled_content
+end
+
+def render_excerpt item, args = {}
+  args[:length] ||= 54
+  article = render_item item
+  article.split(' ')[0..args[:length]].join(' ')
+end
+
+def link_to_wp_function text, function
+  "<a href='http://codex.wordpress.org/Function_Reference/#{function}', target='_blank'><code>#{text}</code></a>"
+end
+
+def link_to_tab text, target
+  "<a href='#{target}', target='_blank'>#{text}</a>"
+end
+
+def todo message
+  "<span class='todo'><span class='todo-text'>TODO:</span> #{message}</span>"
+end
+
 ############### GET Nanoc::Item Functions #####################
 
 def get_item_by_id identifier
@@ -88,6 +110,16 @@ def get_category_of item
   return item if category? item
   return false if item.identifier == '/'
   return get_category_by_id( item.identifier.match(/^\/\w+\//)[0] )
+end
+
+# get_notice takes one argument:
+# - :from (optional)(string)(formatted as nanoc identifier)
+# This is where you want to get the notice from
+# default: '/'
+def get_notice args = {}
+  args[:from] ||= '/'
+  item = get_item_by_id args[:from]
+  item[:notice] || false
 end
 
 ############### GET Nanoc::Item Attributes Functions #####################

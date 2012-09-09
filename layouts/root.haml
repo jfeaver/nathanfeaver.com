@@ -6,6 +6,6 @@
       -if @item[:notice]
         #notice.box_round
           =@item[:notice]
-      =render '_blog_list'
-      %hr
+      =render '_blog_post'
+      =#link_to('More Posts', '/archive/')
   =render '_sidebar'

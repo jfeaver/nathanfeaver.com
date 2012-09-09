@@ -13,11 +13,11 @@
               = link_to(category[:title], category)
             -else
               = link_to(category[:title] + ' - Blog', category)
+          -#unless category.identifier == '/portfolio/'
           %ul
             -items_of( category ).reverse.each_with_index do |li, i|
-              %li= link_to(li[:title], li)
-              -break if (i > 3) && (get_category_of( li ).inspect != (get_category_of( @item ).inspect))
+              -if li.path
+                %li= link_to(li[:title], li)
+                -break if (i > 3) && (get_category_of( li ).inspect != (get_category_of( @item ).inspect))
 
-      .sidebar_section
-        %h4= link_to('Portfolio', '/portfolio/')
   #sidebar-endcap
