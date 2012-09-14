@@ -1,8 +1,9 @@
 module Enumerable
   def attr_sort symbol
-    self.sort_by do |item|
-      item[symbol]
+    objects = self.sort_by do |object|
+      object[symbol]
     end
+    symbol == :created_at ? objects.reverse : objects
   end
 
   def reject_nil

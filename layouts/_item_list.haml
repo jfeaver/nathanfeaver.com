@@ -2,8 +2,8 @@
 .item_list
   %ul
     -items_of( @category ).reverse.each do |category_item|
-      %a{:href => category_item.identifier}
+      %a.button-link{:href => category_item.identifier}
         %li
           =get_featured_image category_item
-          %span= category_item[:title]
+          %span.button-link-title= category_item[:title]
 

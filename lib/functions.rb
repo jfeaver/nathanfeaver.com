@@ -14,7 +14,14 @@ end
 
 # Get items from a particular category
 def items_of category
-  @items.select {|item| item.identifier.match( /^#{category.identifier}\w+\/$/ )}.attr_sort( :created_at )
+  unless category.respond_to? :identifier
+    cat = get_category_by_id category
+    (cat.respond_to?( :identifier ) ? (category = cat) : (raise TypeError, 'expecting Nanoc::Item or string identifier'))
+  end
+  items = @items.select {|item| item.identifier.match( /^#{category.identifier}\w+\/$/ )}
+  has_order = items.all? {|item| item[:order]}
+  sort_attr = ( has_order ? :order : :created_at )
+  items.attr_sort( sort_attr )
 end
 
 # Return the category if it is one, false otherwise
@@ -97,18 +104,19 @@ end
 
 ############### GET Nanoc::Item Functions #####################
 
-def get_item_by_id identifier
-  @items.find {|i| i.identifier == identifier }
+def get_item_by_id test_id
+  @items.find {|i| i.identifier == test_id }
 end
 
 def get_category_by_id identifier
-  get_item_by_id identifier
+  item = get_item_by_id identifier
+  return ((category? item) ? item : get_category_of(item))
 end
 
 def get_category_of item
   return nil unless item.respond_to?( :identifier )
   return item if category? item
-  return false if item.identifier == '/'
+  return item if item.identifier == '/'
   return get_category_by_id( item.identifier.match(/^\/\w+\//)[0] )
 end
 

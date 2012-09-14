@@ -2,9 +2,10 @@
 =render '_header'
 .inside
   #container
-    #main
-      -if @item[:notice]
-        #notice.box_round
-          =@item[:notice]
-      =render '_item_list', :category => @item
-  =render '_sidebar'
+    #columns.clearfix
+      #main
+        -if @item[:notice]
+          #notice.box_round
+            =@item[:notice]
+        =render '_item_list', :category => @item
+      =render '_sidebar'

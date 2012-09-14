@@ -13,54 +13,48 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+compile '/google89d4b2531f314684/' do 
+  #This is the google site id page
+end
+
 compile '/css/*/' do
   filter :sass, :syntax => :scss
-end
-
-compile '/' do
-  filter :haml
-  layout 'root'
-end
-
-compile '/beer_report/' do
-  filter :haml
-  layout 'beer'
-end
-
-compile '/about/' do
-  filter :haml
-  layout 'about'
-end
-
-compile '/portfolio/' do
-  filter :haml
-  layout 'about'
-end
-
-compile '/portfolio/*' do end
-
-compile '/blog/*' do
-  if item.identifier == '/blog/'
-    filter :haml
-    layout 'about'
-  else
-    filter :haml
-    layout 'blog_post'
-  end
 end
 
 compile '/js/*' do end
 
 compile '*' do
-  if item.binary?
-    # don’t filter binary items
-  elsif category? @item 
+  # don’t filter binary items
+  unless item.binary?
     filter :haml
-    layout 'category'
-  else
-    filter :haml
-    layout 'item'
+    if category? @item
+      # Category Level Item
+      page = item.identifier
+      case page
+      when '/hobbies/', '/bookshelf/'
+        # A page that lists items in the category
+        layout 'category'
+      when '/beer_report/'
+        layout 'beer'
+      else
+        # A page that yields to the category content
+        layout 'page'
+      end
+
+    else
+      # Non Category Level Item
+      case get_category_of( item ).identifier
+      when '/portfolio/'
+        #Do not render individual portfolio items
+      when '/blog/', '/'
+        # false -> homepage
+        layout 'blog'
+      else
+        layout 'item'
+      end 
+    end
   end
+  #end of item.binary?
 end
 
 route '/css/*/' do
@@ -77,6 +71,10 @@ route '/portfolio/*' do
   else
     nil
   end
+end
+
+route '/google89d4b2531f314684/' do
+  item.identifier.chop + '.html'
 end
 
 route '*' do

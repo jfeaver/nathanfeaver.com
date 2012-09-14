@@ -1,0 +1,11 @@
+=render '_page_header', :custom_title => 'Welcome to NathanFeaver.com'
+=render '_header'
+.inside
+  #container
+    #columns.clearfix
+      #main
+        -if @item[:notice] || '/about/' == @item.identifier
+          #notice.box_round
+            =@item[:notice] || get_notice( :from => @from )
+        =yield
+      =render '_sidebar'

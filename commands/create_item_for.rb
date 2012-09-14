@@ -41,7 +41,7 @@ run do |opts, args, cmd|
     extra = "\nrating: \nauthor: "
     landscape = 'false'
   when 'portfolio'
-    extra = "\nlink: #{link}"
+    extra = "\norder:\nlink: #{link}"
   end
 
   template = <<TEMPLATE

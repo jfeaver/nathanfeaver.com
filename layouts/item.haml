@@ -2,25 +2,26 @@
 =render '_header'
 .inside
   #container
-    #main.item
-      -if @item[:notice]
-        #notice.box_round
-          =@item[:notice]
-      %article
-        =get_featured_image @item
-        %h1= @item[:title]
-        -if @item[:rating]
-          .rating
-            %strong Rated:
-            =get_rating_image @item[:rating]
-        -if @item[:author]
-          .author
-            %strong Written by:
-            =@item[:author]
-        -last = (@item[:last_updated] || @item[:created_at])
-        %span.date= "Last Updated: #{last.strftime('%b. %d, %Y')}"
-        =yield
-      %hr
+    #columns.clearfix
+      #main.item
+        -if @item[:notice]
+          #notice.box_round
+            =@item[:notice]
+        %article
+          =get_featured_image @item
+          %h1= @item[:title]
+          -if @item[:rating]
+            .rating
+              %strong Rated:
+              =get_rating_image @item[:rating]
+          -if @item[:author]
+            .author
+              %strong Written by:
+              =@item[:author]
+          -last = (@item[:last_updated] || @item[:created_at])
+          %span.date= "Last Updated: #{last.strftime('%b. %d, %Y')}"
+          =yield
+        %hr
 
-      =render '_disqus'
-  =render '_sidebar'
+        =render '_disqus'
+      =render '_sidebar'
