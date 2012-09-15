@@ -90,7 +90,14 @@ def render_excerpt item, args = {}
   article.split(' ')[0..args[:length]].join(' ')
 end
 
-def link_to_wp_function text, function
+def link_to_wp_function text, function = false
+  unless function
+    function = text.match(/(\w+)(\(.*\))*/)[1]
+  end
+  unless function
+    raise ArgumentError, "function should not contain spaces: #{function}" if function.include? ' '
+    raise ArgumentError, "function is not recognized: #{function}"
+  end
   "<a href='http://codex.wordpress.org/Function_Reference/#{function}', target='_blank'><code>#{text}</code></a>"
 end
 
