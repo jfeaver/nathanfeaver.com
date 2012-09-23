@@ -18,7 +18,7 @@
               = link_to('Archive', category)
           -#unless category.identifier == '/portfolio/'
           %ul
-            -items_of( category ).reverse.each_with_index do |li, i|
+            -items_of( category ).each_with_index do |li, i|
               -if li.path
                 %li= link_to(li[:title].excerpt, li)
                 -break if (i > 3) && (get_category_of( li ) != get_category_of( @item ))

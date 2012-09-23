@@ -25,5 +25,9 @@ class String
       self
     end
   end
+  
+  def linkify
+    self.gsub(/[\s\(\)]/, ' ' => '_', '(' => '', ')' => '')
+  end
 
 end
