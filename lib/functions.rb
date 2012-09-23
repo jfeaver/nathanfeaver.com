@@ -80,16 +80,31 @@ def update hash
   template
 end
 
+# This function isn't used
 def render_item item
   item.reps.find {|rep| rep.name == :default }.compiled_content
 end
 
+# This function isn't used
 def render_excerpt item, args = {}
   args[:length] ||= 54
   article = render_item item
   article.split(' ')[0..args[:length]].join(' ')
 end
 
+#### BLOG HTML FUNCTIONS ####
+
+# Spits out a Hashtag Linkable h4 element
+def blog_heading title
+  "<a name=#{title.linkify}></a><h4>#{title}</h4>"
+end
+
+def link_to_hash title, basepath = false
+  basepath ||= @item.path
+  "<a href='#{basepath}##{title.linkify}'>#{title}</a>"
+end
+
+# Links to WordPress documentation
 def link_to_wp_function text, function = false
   unless function
     function = text.match(/(\w+)(\(.*\))*/)[1]
@@ -101,6 +116,7 @@ def link_to_wp_function text, function = false
   "<a href='http://codex.wordpress.org/Function_Reference/#{function}', target='_blank'><code>#{text}</code></a>"
 end
 
+# Opens a new tab with the link
 def link_to_tab text, target
   "<a href='#{target}', target='_blank'>#{text}</a>"
 end
@@ -135,6 +151,10 @@ def get_notice args = {}
   args[:from] ||= '/'
   item = get_item_by_id args[:from]
   item[:notice] || false
+end
+
+def notice_for_about
+  get_notice if @item.identifier == '/about/'
 end
 
 ############### GET Nanoc::Item Attributes Functions #####################
