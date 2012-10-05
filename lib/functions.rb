@@ -70,7 +70,7 @@ def get_featured_image item, img_class = ''
     tag += "images/no_image.png"
   end
   tag += "' "
-  tag += item[:landscape] ? 'width=' : 'height'
+  tag += item[:landscape] ? 'width=' : 'height='
   tag += "'175px' />"
 end
 
