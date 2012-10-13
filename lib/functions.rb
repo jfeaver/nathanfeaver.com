@@ -71,7 +71,7 @@ def get_featured_image item, img_class = ''
   end
   tag += "' "
   tag += item[:landscape] ? 'width=' : 'height='
-  tag += "'175px' />"
+  tag += "'170px' />"
 end
 
 def update hash
