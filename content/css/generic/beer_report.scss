@@ -1,0 +1,60 @@
+
+/* ===== Primary Styles ========================================================
+   Author: Nathan Feaver
+   ========================================================================== */
+
+#main {
+  width: 1100px;
+  margin: auto;
+  h1 {
+    text-align: center;
+  }
+  span {
+    z-index: -1;
+    font-size: 75%;
+    &.go_back { float: left; }
+    &.go_home { float: right; }
+    &.sort_notice { float: left; background-color: SkyBlue; padding: 0 3px; }
+    &.pdf_link { float: right; }
+  }
+}
+
+table { 
+  width: 100%;
+  font-size: 85%;
+  thead { 
+    a { 
+      color: white;
+      text-decoration: none;
+      &:visited { color: white; }
+      &:hover { 
+        color: red;
+        text-decoration: underline;
+      }
+    }
+    background-color: #444;
+    text-align: left;
+    display: block;
+  }
+  th, td { 
+    padding: 0 4px;
+    display: inline-block;
+    float: left;
+  }
+  tr { width: 100%; }
+  tr:nth-child(even) { background-color: #eee; }
+  tbody { 
+    display: block; 
+    height: 600px; 
+    overflow-y: scroll; 
+  }
+  .number     { width: 24px; }
+  .event      { width: 89px; }
+  .brewery    { width: 136px; }
+  .brew       { width: 185px; }
+  .date       { width: 56px; }
+  .location   { width: 86px; }
+  .city       { width: 86px; }
+  .comments   { width: 357px; }
+}
+
