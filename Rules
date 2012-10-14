@@ -17,6 +17,11 @@ compile '/google89d4b2531f314684/' do
   #This is the google site id page
 end
 
+# Ignore CSS Import Architecture
+compile '/css/modules/*' do end
+compile '/css/base/*' do end
+compile '/css/generic/*' do end
+
 compile '/css/*/' do
   filter :sass, :syntax => :scss
 end
@@ -56,6 +61,10 @@ compile '*' do
   end
   #end of item.binary?
 end
+
+route '/css/modules/*' do nil end
+route '/css/base/*' do nil end
+route '/css/generic/*' do nil end
 
 route '/css/*/' do
   item.identifier.chop + '.css'
