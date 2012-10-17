@@ -1,0 +1,41 @@
+#main {
+  h2 { margin: 0.6em 0 0.4em 0; }
+  h3 { margin: 0.5em 0 0.3em 0; }
+  h4 { margin: 0.3em 0; }
+}
+
+#main {
+  width: 610px;
+  float: left;
+  margin-top: 10px;
+  #notice {
+    margin: 5px 0;
+    padding: 4px 8px;
+    background-color: Gold;
+    @extend .box-round;
+  }
+  ul.bullet {
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+    li {
+      list-style-type: disc;
+    }
+  }
+  table {
+    margin: 1.5em auto;
+    text-align: left;
+  }
+  table th
+  {
+    font-size: 110%;
+    font-weight: normal;
+    color: #039;
+    padding: 1em 0.4em;
+    border-bottom: 2px solid #6678b1;
+  }
+  table td
+  {
+    padding: 0.5em 2em 0 0.5em;
+  }
+}
+

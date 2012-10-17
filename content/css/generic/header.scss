@@ -1,0 +1,25 @@
+header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  min-height: 96px;
+  position: relative;
+  #site-id {
+    position: absolute;
+    top: 11px;
+    left: 20px;
+  }
+  #title-container {
+    position: absolute;
+    top: 10px;
+    left: 150px;
+  }
+  #page-title {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 250%;
+    a { color: black; }
+  }
+  .sub-text {
+    font-style: italic;
+  }
+}
+

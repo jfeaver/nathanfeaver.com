@@ -1,0 +1,11 @@
+#nathan_strip {
+  height: 110px;
+  width: 610px;
+  background-color: #373737;
+  margin: 7px 0;
+  img {
+    margin: 5px;
+  }
+  @extend .box-round;
+}
+

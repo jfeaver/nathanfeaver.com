@@ -1,0 +1,26 @@
+.item_list {
+  img { 
+    margin: auto; 
+    display: block;
+    &.landscape {
+      margin-top: 20px;
+    }
+  }
+  li {
+    font-size: 85%;
+    height: 215px;
+    width: 170px;
+    padding: 3px;
+    float: left;
+    .button-link-title {
+      color: black !important;
+      text-align: center;
+      display: block;
+      padding: 8px;
+      font-weight: bold;
+    }
+    @extend img.border;
+    @extend .box-round;
+  }
+}
+

@@ -1,0 +1,6 @@
+.floated_img_border {
+  display: block;
+  float: left;
+  @extend img.border 
+}
+

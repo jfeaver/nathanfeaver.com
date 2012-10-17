@@ -1,0 +1,36 @@
+#sidebar {
+  float: right;
+  #sidebar-container {
+    background-color: #f3f3f3;
+    border-left: #CCC solid 1px;
+    width: 250px;
+    padding: 17px 25px;
+    h4 { color: #05f; }
+    #sidebar-header {
+      width: 100%;
+      text-align: center;
+      padding-bottom: 5px;
+      border-bottom: 1px solid gray;
+    }
+    #sidebar-sections {
+      padding-top: 10px;
+      width: 100%;
+    }
+    .sidebar_section { margin: 0 0 15px 10px; }
+    ul {
+      li {
+        margin-left: 10px;
+        a { font-weight: normal }
+      }
+    }
+  }
+  #sidebar-endcap {
+    height: 270px;
+    width: 100%;
+    background: url('/images/full_sidebar_fade.png') repeat-y;
+  }
+  a {
+    color: inherit;
+  }
+}
+

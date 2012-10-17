@@ -1,0 +1,20 @@
+#portfolio {
+  a.underline_h { 
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+    &:hover h4 { text-decoration: underline; }
+  }
+  li {
+    list-style-type: none;
+    strong { font-size: 110%; }
+  }
+  .portfolio_piece {
+    margin-bottom: 30px;
+    .portfolio_piece_info {
+      margin-left: 197px;
+      h4 { margin: 5px 0; }
+    }
+  }
+}
+

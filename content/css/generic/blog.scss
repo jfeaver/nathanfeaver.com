@@ -1,0 +1,76 @@
+#archive {
+  .title { font-size: 130%; }
+  .post-date{
+    display: inline-block;
+    vertical-align: top;
+    width: 48px;
+    height: 48px;
+    margin: 4px;
+    padding: 4px;
+    text-align: center;
+    border: solid 2px lightGray;
+    background-color: #29293e;
+    @extend .box-round;
+    .month {
+      font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;
+      font-size: 120%;
+      color: #e1e1f7;
+    }
+    .day { 
+      padding-top: 10px; 
+      line-height: 95%;
+    }
+    .number, .suffix {
+      font-family: Geneva, Tahoma, Verdana, sans-serif;
+      color: white;
+    }
+    .number { font-size: 160%; }
+    .suffix { font-size: 110%; }
+  }
+  .post-preview-content { 
+    display: inline-block;
+    width: 530px;
+  }
+}
+
+article pre {
+  color: white;
+  background-color: #300a24;
+  padding: 8px;
+  margin: 0.9em 0;
+  overflow: auto;
+  overflow-x: scroll;
+}
+
+article code {
+  font-family: "Andale Mono", "bitstream vera sans mono", monaco, "lucida console", "courier new", courier, sans;
+}
+
+article .todo {
+  display: block;
+  .todo-text {
+    color: darkBlue;
+    background-color: #FFE000;
+  }
+}
+
+article dl {
+  dt { font-weight: bold; }
+  dd { margin-bottom: 0.6em; }
+}
+
+.title-sub-text {
+  display: block;
+  font-size: 140%;
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+}
+
+article {
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+#disqus_thread {
+  margin-top: 8px;
+}
+
