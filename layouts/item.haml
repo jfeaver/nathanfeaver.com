@@ -8,7 +8,7 @@
           #notice.box_round
             =@item[:notice]
         %article
-          =get_featured_image @item
+          =get_featured_image @item, 'floated_img_border'
           %h1= @item[:title]
           -if @item[:rating]
             .rating
