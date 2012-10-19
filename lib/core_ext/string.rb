@@ -18,6 +18,7 @@ class String
     end
   end
 
+  # Excerpt for navigation bar links
   def excerpt
     if self.length > 24
       self[0..24] + '...'
@@ -26,6 +27,7 @@ class String
     end
   end
   
+  # Removes spaces and parentheses
   def linkify
     self.gsub(/[\s\(\)]/, ' ' => '_', '(' => '', ')' => '')
   end
