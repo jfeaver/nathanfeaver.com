@@ -21,7 +21,7 @@ class String
   # Excerpt for navigation bar links
   def excerpt
     if self.length > 24
-      self[0..24] + '...'
+      self[0..24].rstrip + '...'
     else
       self
     end
