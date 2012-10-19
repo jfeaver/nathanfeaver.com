@@ -49,21 +49,6 @@ end
 def render_item item
   item.reps.find {|rep| rep.name == :default }.compiled_content
 end
-=begin
-# This function isn't used
-def render_excerpt item, args = {}
-  args[:length] ||= 54
-  article = render_item item
-  article.split(' ')[0..args[:length]].join(' ')
-end
-=end
-#### BLOG HTML FUNCTIONS ####
-
-# Spits out a Hashtag Linkable h4 element
-
-def todo message
-  "<span class='todo'><span class='todo-text'>TODO:</span> #{message}</span>"
-end
 
 ############### GET Nanoc::Item Functions #####################
 
