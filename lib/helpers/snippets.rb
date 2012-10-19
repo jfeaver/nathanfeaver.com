@@ -29,13 +29,21 @@ module Nathan::HTMLSnippets
   module Blog
 
     def update hash
-      template = "<h4>#{hash[:title]}</h4>\n"
+      template = "#{heading_for hash[:title]}\n"
       template += "<span class='date'>Added: #{Date.parse(hash[:date]).strftime('%b. %d, %Y')}</span>\n" unless hash[:first]
       template
     end
 
     def blog_heading title
-      "<a name=#{title.linkify}></a><h4>#{title}</h4>"
+      "#{hash_location_for title}#{heading_for title}"
+    end
+
+    def hash_location_for title
+      "<a name=#{title.linkify}></a>"
+    end
+
+    def heading_for title
+      "<h4>#{title}</h4>"
     end
 
     def link_to_hash title, basepath = false
