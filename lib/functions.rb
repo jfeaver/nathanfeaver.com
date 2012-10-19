@@ -1,12 +1,10 @@
 # Assorted functions for nathanfeaver.com
 
 ############### CATEGORY Functions #####################
-
 # Get all category level items
 def categories
   @items.select {|item| item.identifier.match(/^\/\w+\/$/) }
 end
-
 # Get all category level items with sidebar denotation
 def sidebar_categories
   s_cat = categories.select {|category| category[:sidebar_item]}.attr_sort( :sidebar_item )
@@ -82,19 +80,3 @@ def notice_for_about
   get_notice if @item.identifier == '/about/'
 end
 
-############### GET Nanoc::Item Attributes Functions #####################
-
-def keywords? item
-  return true if item[:keywords] && item[:keywords].reject_nil
-  return true if item[:techs] && item[:techs].reject_nil
-end
-
-def get_keywords item
-  return '' unless keywords? item
-  keywords = []
-  keywords << (get_category_of item)[:title]
-  keywords << item[:title]
-  keywords << item[:keywords] if item[:keywords] && item[:keywords].reject_nil
-  keywords << item[:techs] if item[:techs] && item[:techs].reject_nil
-  keywords.join(', ')
-end

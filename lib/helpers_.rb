@@ -4,4 +4,5 @@ include Nanoc::Helpers::LinkTo
 
 
 include Nathan::HTMLSnippets
+include Nathan::Keywords
 
