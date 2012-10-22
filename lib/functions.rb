@@ -3,6 +3,7 @@
 ############### CATEGORY Functions #####################
 # Get all category level items
 def categories
+  Category.find :all
   @items.select {|item| item.identifier.match(/^\/\w+\/$/) }
 end
 # Get all category level items with sidebar denotation
