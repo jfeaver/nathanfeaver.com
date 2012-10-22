@@ -13,6 +13,11 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+preprocess do
+  Category.initialize items
+  puts "Category items: #{Category.find :all}"
+end
+
 compile '/google89d4b2531f314684/' do 
   #This is the google site id page
 end
