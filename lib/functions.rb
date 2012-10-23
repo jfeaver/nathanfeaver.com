@@ -18,7 +18,8 @@ end
 
 # Return the category if it is one, false otherwise
 def category? item
-  return (item.identifier.match(/^\/\w+\/$/) ? item : false)
+  Categories.include? item
+  #return (item.identifier.match(/^\/\w+\/$/) ? item : false)
 end
 
 ############### GET HTML Functions (links and such)  #####################
