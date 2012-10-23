@@ -42,7 +42,7 @@ compile '*' do
   # don’t filter binary items
   unless item.binary?
     filter :haml
-    if category? @item
+    if Categories.include? @item
       # Category Level Item
       page = item.identifier
       case page
@@ -58,7 +58,7 @@ compile '*' do
 
     else
       # Non Category Level Item
-      case get_category_of( item ).identifier
+      case Categories.find( :category_of => item ).identifier
       when '/portfolio/'
         #Do not render individual portfolio items
       when '/blog/', '/'

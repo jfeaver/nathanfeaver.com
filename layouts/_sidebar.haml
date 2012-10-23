@@ -9,7 +9,7 @@
           %li= link_to 'About', '/about/'
           %li= link_to 'Portfolio', '/portfolio/'
       -# List all categories on the sidebar, sorting them by value in :sidebar_item
-      -sidebar_categories.each do |category|
+      -Categories.find( :sidebar ).each do |category|
         .sidebar_section
           %h4
             -unless category.identifier == '/blog/'
@@ -18,9 +18,9 @@
               = link_to('Archive', category)
           -#unless category.identifier == '/portfolio/'
           %ul
-            -items_of( category ).each_with_index do |li, i|
+            -Categories.find( :items_of => category ).each_with_index do |li, i|
               -if li.path
                 %li= link_to(li[:title].excerpt, li)
-                -break if (i > 3) && (get_category_of( li ) != get_category_of( @item ))
+                -break if (i > 3) && (Categories.find( :category_of => li ) != Categories.find( :category_of => @item ))
 
   #sidebar-endcap

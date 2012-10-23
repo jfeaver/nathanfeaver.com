@@ -10,7 +10,7 @@
 
         /Begin Post
         -# Post should be the item or the first post (if this is the homepage)
-        -post = (@item.identifier == '/' ? items_of( get_item_by_id '/blog/' ).first : @item)
+        -post = (@item.identifier == '/' ? Categories.find( :items_of => '/blog/' ).first : @item)
         %article
           %h2= post[:title]
           -if post[:subtitle]

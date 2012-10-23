@@ -1,7 +1,8 @@
--(@category = @category ? ( get_category_of @category ) : ( get_category_of @item )) unless category? @category
+-#FIXME: Why is this line necessary?  Refactor?
+-(@category = @category ? ( Categories.find( :category_of => @category )) : ( Categories.find( :category_of => @item ))) unless Categories.include? @category
 .item_list
   %ul
-    -items_of( @category ).reverse.each do |category_item|
+    -Categories.find( :items_of => @category ).reverse.each do |category_item|
       %a.button-link{:href => category_item.identifier}
         %li
           =get_featured_image category_item

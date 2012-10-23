@@ -9,7 +9,7 @@ module Nathan::Keywords
   def get_keywords item
     return '' unless keywords? item
     keywords = []
-    keywords << (get_category_of item)[:title]
+    keywords << (Categories.find( :category_of => item))[:title]
     keywords << item[:title]
     keywords << item[:keywords] if item[:keywords] && item[:keywords].reject_nil
     keywords << item[:techs] if item[:techs] && item[:techs].reject_nil

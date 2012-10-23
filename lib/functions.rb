@@ -1,26 +1,5 @@
 # Assorted functions for nathanfeaver.com
 
-############### CATEGORY Functions #####################
-# Get all category level items
-def categories
-  Categories.find :all
-end
-
-# Get all category level items with sidebar denotation
-def sidebar_categories
-  Categories.find :sidebar
-end
-
-# Get items from a particular category
-def items_of category
-  Categories.find :items_of => category
-end
-
-# Return the category if it is one, false otherwise
-def category? item
-  Categories.include? item
-end
-
 ############### GET HTML Functions (links and such)  #####################
 
 def get_featured_image item, img_class = ''
@@ -46,14 +25,6 @@ end
 
 def get_item_by_id test_id
   @items.find {|i| i.identifier == test_id }
-end
-
-def get_category_by_id identifier
-  Categories.find :category_of => identifier
-end
-
-def get_category_of item
-  Categories.find :category_of => item
 end
 
 # get_notice takes one argument:
