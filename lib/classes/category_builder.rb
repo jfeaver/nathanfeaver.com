@@ -15,6 +15,7 @@ module Nathan::Classes
 
     def build args
       item_loop args[:with]
+      sort_items
     end
 
     def category_of item
@@ -34,8 +35,9 @@ module Nathan::Classes
     private
 
     def item_loop items
+      # Make sure category items get sorted first
       items.sort_by! {|item| item.identifier.count '/' }
-      
+
       items.each do |item|
 
         # Ignore Assets and specified excluded sites
@@ -57,7 +59,14 @@ module Nathan::Classes
         end
       end
     end
-
+    
+    def sort_items
+      @sidebar.sort_by! {|item| item[:sidebar_item]}
+      @items_of.each do |category|
+        # Sort category items by date descending (newest first)
+        category[1].sort_by! {|item| item[:created_at]}.reverse!
+      end
+    end
   end 
 
 end
