@@ -1,6 +1,5 @@
 module Nathan::Classes
   class CategoryBuilder
-    require 'logger'
 
     attr_reader :all, :sidebar, :items_of
     
@@ -19,7 +18,16 @@ module Nathan::Classes
     end
 
     def category_of item
-      all.find {|c| item.identifier[/^\/\w+\//] == c.identifier}
+      case
+      when !item.respond_to?( :identifier )
+        nil
+      when all.include?( item )
+        item
+      when (item.identifier == '/')
+        item
+      else
+        all.find {|c| item.identifier[/^\/\w+\//] == c.identifier}
+      end
     end
 
     private
