@@ -4,8 +4,8 @@
 # Get all category level items
 def categories
   Category.find :all
-  @items.select {|item| item.identifier.match(/^\/\w+\/$/) }
 end
+
 # Get all category level items with sidebar denotation
 def sidebar_categories
   s_cat = categories.select {|category| category[:sidebar_item]}.attr_sort( :sidebar_item )
@@ -75,9 +75,5 @@ def get_notice args = {}
   args[:from] ||= '/'
   item = get_item_by_id args[:from]
   item[:notice] || false
-end
-
-def notice_for_about
-  get_notice if @item.identifier == '/about/'
 end
 

@@ -4,8 +4,8 @@
   #container
     #columns.clearfix
       #main
-        -if @item[:notice] || @from || notice_for_about
+        -if @item[:notice] || @from
           #notice.box_round
-            =@item[:notice] || get_notice( :from => @from ) || notice_for_about
+            =@item[:notice] || get_notice( :from => @from )
         =yield
       =render '_sidebar'
