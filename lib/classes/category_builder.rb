@@ -8,6 +8,8 @@ module Nathan::Classes
       @all = []
       @sidebar = []
       @items_of = Hash.new([])
+      # Exclude these items
+      @excluded = %w(/)
       build :with => items if items
     end
 
@@ -26,15 +28,10 @@ module Nathan::Classes
       logger = Logger.new(file)
       items.sort_by! {|item| item.identifier.count '/' }
       
-      # Remove Root page
-      if items.first.identifier == '/'
-        items.shift
-      end
-
       items.each do |item|
 
         # Ignore Assets
-        unless item.binary?
+        unless item.binary? || @excluded.include?( item.identifier )
           
           # Collect Categories
           if item.identifier.match(/^\/\w+\/$/)
