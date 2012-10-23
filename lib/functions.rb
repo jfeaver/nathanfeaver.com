@@ -19,7 +19,6 @@ end
 # Return the category if it is one, false otherwise
 def category? item
   Categories.include? item
-  #return (item.identifier.match(/^\/\w+\/$/) ? item : false)
 end
 
 ############### GET HTML Functions (links and such)  #####################
@@ -40,7 +39,8 @@ def get_featured_image item, img_class = ''
 end
 
 def render_item item
-  item.reps.find {|rep| rep.name == :default }.compiled_content
+  item.render
+  #item.reps.find {|rep| rep.name == :default }.compiled_content
 end
 
 ############### GET Nanoc::Item Functions #####################

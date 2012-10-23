@@ -18,5 +18,9 @@ module Nanoc
       end
     end
 
+    def render
+      self.reps.find {|rep| rep.name == :default }.compiled_content
+    end
+
   end
 end
