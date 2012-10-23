@@ -3,28 +3,13 @@
 @import 'base/elements';
 
 // Generic
-@import 'generic/about.scss';
 @import 'generic/beer_report.scss';
-@import 'generic/blog.scss';
-@import 'generic/footer.scss';
-@import 'generic/header.scss';
-@import 'generic/layout.scss';
-@import 'generic/main.scss';
-@import 'generic/portfolio.scss';
 @import 'generic/selections.scss';
-@import 'generic/sidebar.scss';
 
 // Modules
 @import 'modules/date.scss';
-@import 'modules/item_list.scss';
-@import 'modules/rating.scss';
-@import 'modules/ruby_code.scss';
-@import 'modules/sticky.scss';
-@import 'modules/update.scss';
-@import 'modules/floated_img_border';
 
 // Helpers
 @import 'helpers/box-round.scss';
 @import 'helpers/h5bp.scss';
-@import 'helpers/img-border.scss';
 
