@@ -8,19 +8,12 @@ end
 
 # Get all category level items with sidebar denotation
 def sidebar_categories
-  s_cat = categories.select {|category| category[:sidebar_item]}.attr_sort( :sidebar_item )
+  Categories.find :sidebar
 end
 
 # Get items from a particular category
 def items_of category
-  unless category.respond_to? :identifier
-    cat = get_category_by_id category
-    (cat.respond_to?( :identifier ) ? (category = cat) : (raise TypeError, 'expecting Nanoc::Item or string identifier'))
-  end
-  items = @items.select {|item| item.identifier.match( /^#{category.identifier}\w+\/$/ )}
-  has_order = items.all? {|item| item[:order]}
-  sort_attr = ( has_order ? :order : :created_at )
-  items.attr_sort( sort_attr )
+  Categories.find :items_of => category
 end
 
 # Return the category if it is one, false otherwise
