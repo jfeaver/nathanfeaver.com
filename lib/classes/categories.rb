@@ -16,8 +16,6 @@ module Nathan::Classes
     end
 
     def find args
-      raise RuntimeError, "Category lists not initialized, use Categories.initialize first" unless @initialized || @initializing
-
       categories = 
         case args
         when :all
@@ -29,7 +27,6 @@ module Nathan::Classes
             item = args[:category_of]
             accessor.category_of item
           elsif args[:items_of]
-            #category = args[:items_of].identifier.match(/^\/(\w+)\//)[0].to_sym
             category = args[:items_of]
             accessor.items_of[category.to_sym]
           else
@@ -38,7 +35,15 @@ module Nathan::Classes
         end
     end
 
+    def include? category
+      accessor.all.include? category
+    end
+
     private
+
+    def initialized?
+      @initialized || @initializing
+    end
 
     def build_accessor items
       @initializing = true
@@ -46,11 +51,7 @@ module Nathan::Classes
     end
 
     def accessor
-      @accessor
-    end
-
-    def accessor= instance
-      @accessor = instance
+      initialized? ? @accessor : raise( RuntimeError, "Category lists not initialized, use Categories.initialize first" )
     end
 
   end
