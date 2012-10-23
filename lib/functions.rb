@@ -49,10 +49,7 @@ def get_item_by_id test_id
 end
 
 def get_category_by_id identifier
-  #Categories.find :category => identifier
-  item = get_item_by_id identifier
-  #return ((category? item) ? item : get_category_of(item))
-  Categories.find :category_of => item
+  Categories.find :category_of => identifier
 end
 
 def get_category_of item
