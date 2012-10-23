@@ -20,7 +20,8 @@ module Nathan::Classes
     def category_of item
       case
       when !item.respond_to?( :identifier )
-        nil
+        item = item[/^\/\w+\//]
+        all.find {|c| item == c.identifier}
       when all.include?( item )
         item
       when (item.identifier == '/')
