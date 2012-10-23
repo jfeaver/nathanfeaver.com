@@ -28,8 +28,19 @@ class String
   end
   
   # Removes spaces and parentheses
+  # Used in create_item_for script
   def linkify
     self.gsub(/[\s\(\)]/, ' ' => '_', '(' => '', ')' => '')
+  end
+
+  old_to_sym = instance_method(:to_sym)
+  
+  define_method(:to_sym) do
+    if match = self.match(/^\/(\.+)\//)
+      old_to_sym.bind(match[1]).call
+    else
+      old_to_sym.bind(self).call
+    end
   end
 
 end

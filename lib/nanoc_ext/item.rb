@@ -13,8 +13,7 @@ module Nanoc
       if self.identifier == '/'
         :root
       else
-        match = self.identifier.match(/^\/(.+)\/$/)
-        match[0] ? match[0].to_sym : nil
+        self.identifier.to_sym
       end
     end
 
