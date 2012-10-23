@@ -7,7 +7,8 @@ module Nathan::Classes
     def initialize items = nil
       @all = []
       @sidebar = []
-      @items_of = Hash.new([])
+      @items_of = {}
+      
       # Exclude these items
       @excluded = %w(/)
       build :with => items if items
@@ -17,37 +18,35 @@ module Nathan::Classes
       item_loop args[:with]
     end
 
-    private
-
-    def nanoc_site_items
-      Nathan.instance_eval{ @items }
+    def category_of item
+      all.find {|c| item.identifier[/^\/\w+\//] == c.identifier}
     end
 
+    private
+
     def item_loop items
-      file = File.new('CategoryBuilder.log', 'w')
-      logger = Logger.new(file)
       items.sort_by! {|item| item.identifier.count '/' }
       
       items.each do |item|
 
-        # Ignore Assets
+        # Ignore Assets and specified excluded sites
         unless item.binary? || @excluded.include?( item.identifier )
-          
+
           # Collect Categories
           if item.identifier.match(/^\/\w+\/$/)
             @all << item
             @sidebar << item if item[:sidebar_item]
+
+            # initialize an array for items of this category
+            @items_of[item.to_sym] = []
           
           # Or collect Items into Categories
           else
-            category = item.identifier.match(/^\/(\w+)\//)[0]
-            @items_of[category.to_sym] << item
+            category = category_of item
+            @items_of[category.to_sym] << item if category
           end
         end
       end
-      logger.info('all') { @all.inspect }
-      logger.info('sidebar') { @sidebar.inspect }
-      logger.info('items_of') { @items_of.inspect }
     end
 
   end 
