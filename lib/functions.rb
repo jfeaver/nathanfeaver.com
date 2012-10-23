@@ -40,7 +40,6 @@ end
 
 def render_item item
   item.render
-  #item.reps.find {|rep| rep.name == :default }.compiled_content
 end
 
 ############### GET Nanoc::Item Functions #####################
@@ -50,15 +49,14 @@ def get_item_by_id test_id
 end
 
 def get_category_by_id identifier
+  #Categories.find :category => identifier
   item = get_item_by_id identifier
-  return ((category? item) ? item : get_category_of(item))
+  #return ((category? item) ? item : get_category_of(item))
+  Categories.find :category_of => item
 end
 
 def get_category_of item
-  return nil unless item.respond_to?( :identifier )
-  return item if category? item
-  return item if item.identifier == '/'
-  return get_category_by_id( item.identifier.match(/^\/\w+\//)[0] )
+  Categories.find :category_of => item
 end
 
 # get_notice takes one argument:
