@@ -14,7 +14,7 @@
 #   because “*” matches zero or more characters.
 
 preprocess do
-  Category.initialize items
+  Categories.initialize items
 
   # Add the homepage notice to about page
   about = items.find {|i| i.identifier == '/about/' }

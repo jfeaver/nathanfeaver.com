@@ -3,7 +3,7 @@
 ############### CATEGORY Functions #####################
 # Get all category level items
 def categories
-  Category.find :all
+  Categories.find :all
 end
 
 # Get all category level items with sidebar denotation

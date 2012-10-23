@@ -1,10 +1,10 @@
 module Nathan::Classes
-  Category = Class.new
-  class << Category
+  Categories = Class.new
+  class << Categories
     # This is an eigenclass built to access meta data about categories.  For example,
     # the following command should return all categories that were found:
     #
-    # Category.find :all
+    # Categories.find :all
     # 
 
     # Eigenclasses aren't automatically initialized.  This method must be called before Category is usable
