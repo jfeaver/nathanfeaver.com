@@ -4,4 +4,4 @@ gem 'nanoc'
 gem 'adsf'
 gem 'sass'
 gem 'haml'
-
+gem 'pry'
