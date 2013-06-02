@@ -5,6 +5,4 @@ tmp/
 *.log
 .sass-cache/
 .rm-temp.sh
-content/*
-!content/css/
 
