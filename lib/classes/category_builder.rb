@@ -1,13 +1,14 @@
+require 'pry'
 module Nathan::Classes
   class CategoryBuilder
 
     attr_reader :all, :sidebar, :items_of
-    
+
     def initialize items = nil
       @all = []
       @sidebar = []
       @items_of = {}
-      
+
       # Exclude these items
       @excluded = %w(/)
       build :with => items if items
@@ -50,7 +51,7 @@ module Nathan::Classes
 
             # initialize an array for items of this category
             @items_of[item.to_sym] = []
-          
+
           # Or collect Items into Categories
           else
             category = category_of item
@@ -59,14 +60,14 @@ module Nathan::Classes
         end
       end
     end
-    
+
     def sort_items
       @sidebar.sort_by! {|item| item[:sidebar_item]}
       @items_of.each do |category|
         # Sort category items by date descending (newest first)
-        category[1].sort_by! {|item| item[:created_at]}.reverse!
+        category[1].sort_by! {|item| item[:order] || item[:created_at]}.reverse!
       end
     end
-  end 
+  end
 
 end
