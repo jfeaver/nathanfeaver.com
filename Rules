@@ -22,7 +22,7 @@ preprocess do
   about[:notice] = home[:notice]
 end
 
-compile '/google89d4b2531f314684/' do 
+compile '/google89d4b2531f314684/' do
   #This is the google site id page
 end
 
