@@ -1,0 +1,138 @@
+---
+title: "Custom Post Types and Roles in Wordpress"
+subtitle: Part 2
+created_at: 2012-09-22
+featured_image: /images/blog/custom_post_types_and_roles_in_wordpress_2/
+landscape: true
+techs:
+  - WordPress
+description: "Part 2 of a two part WordPress tutorial describing how to add custom user roles and post types with customized permissions. In Part 2 I show how to create a custom user role and add permissions to the role."
+keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_role, Capabilities, Permissions]
+---
+%p
+  This is part 2 of a two part WordPress tutorial describing how to add custom user roles and post types 
+  with customized permissions using a customer testimonials example.
+%p
+  =succeed ',' do
+    =link_to('Click here for Part 1', '/blog/custom_post_types_and_roles_in_wordpress/')
+  which shows how to create a Testimonials post type, and give full create, read, update, and destroy (CRUD) 
+  permissions to the Administrator and Editor roles. Here, in the second part, I'll create a custom user role that 
+  visitors can use to post and edit their own testimonials.
+
+=blog_heading("Create a User Role with add_role()")
+%p
+  Call
+  =link_to_wp_function('add_role()')
+  inside
+  %code functions.php
+  to create a new WordPress role.  I'll call my new role a HappyCustomer in hopes of good testimonials (although
+  visitors will never see their 'HappyCustomer' title).
+%pre
+  %code
+    :escaped
+      # /wp-content/themes/theme_name/functions.php
+      # Create HappyCustomer Role for Testimonials
+      function happy_customer_setup() {
+        add_role( 'happy_customer', 'Happy Customer', );
+      }
+      add_action( 'after_setup_theme', 'happy_customer_setup' );
+%p
+  %code add_role
+  takes three arguments, a programmatic name, a display name, and an associative array of capabilities/permissions.
+  Here, I'm leaving out the array of permissions because I'd like to set up similar permissions for other
+  non-admin roles later on (keep your code 
+  =succeed ').' do
+    =link_to_tab('DRY',"http://en.wikipedia.org/wiki/Don't_repeat_yourself")
+  If you'd like to describe specific permissions for the HappyCustomer role, then
+  describe them here in an array similar to the 
+  %code $caps
+  array in the code below.
+.sticky
+  %p
+    Not all arguments are optional.  Check the function's
+    =link_to_wp_function('documentation', 'add_role')
+    to see which arguments are.
+=blog_heading("Add Non-Admin Role Capabilities")
+%p
+  A HappyCustomer, and other non-administrative roles should have complete permissions over their own testimonials
+  but not be able to do anything with other's testimonials other than see them.
+%p
+  Here's the code for that:
+%pre
+  %code
+    :escaped
+      # /wp-content/themes/theme_name/functions.php
+      # Give other roles Testimonial Capabilities
+      function add_testimonial_caps_to_non_admin_roles() {
+        # Everyone gets these capabilities:
+        $caps = array(
+          'read',
+          'read_testimonial',
+          'read_private_testimonials',
+          'edit_testimonials',
+          'edit_published_testimonials',
+          'publish_testimonials',
+          'delete_testimonials',
+          'delete_published_testimonials',
+          'upload_files',
+          'edit_files',
+        );
+        $roles = array(
+          get_role( 'author' ),
+          get_role( 'contributor' ),
+          get_role( 'subscriber' ),
+          get_role( 'happy_customer' ),
+        );
+        foreach ($roles as $role) {
+          foreach ($caps as $cap) {
+            $role->add_cap( $cap );
+          }
+        }
+      }
+      add_action( 'after_setup_theme', 'add_testimonial_caps_to_non_admin_roles' );
+%p
+  In this code snippet, I collected all the permissions that were appropriate, collected non-administrative roles, 
+  and finally assigned permissions to the roles.
+%p
+  Carefully make a decision for each of these permissions.  You might not want your HappyCustomer to
+  publish testimonials, edit published testimonials, or upload and edit files. These will all be content
+  that they created but you might want to moderate the publishing to screen inappropriate material.
+=blog_heading('Tidbit: Removing Unwanted Permissions')
+%p
+  When I was getting HappyCustomer set up, I accidentally gave the role some permissions that I did not
+  want them to have.  If this happens, you can always add this code snippet to the function above
+  which uses
+  =link_to_wp_function('remove_cap()')
+  to remove the undesired permissions:
+%pre
+  %code
+    :escaped
+      $bad_caps = array(
+        'edit_private_testimonials',
+        'edit_others_testimonials',
+        'delete_private_testimonials',
+        'delete_others_testimonials',
+      );
+      $roles = array(
+        get_role( 'author' ),
+        get_role( 'contributor' ),
+        get_role( 'subscriber' ),
+        get_role( 'happy_customer' ),
+      );
+      foreach ($roles as $role) {
+        foreach ($bad_caps as $cap) {
+          $role->remove_cap( $cap );
+        }
+      }
+%p
+  That's it for now.  Let me know if you have any questions or suggestions in the comments :)
+
+=blog_heading('References')
+%ul.bullet
+  %li= link_to_tab('WordPress Roles and Capabilities - The Basics', 'http://wp.tutsplus.com/tutorials/creative-coding/wordpress-roles-and-capabilities-the-basics/')
+  %li= link_to_tab('Ultimate Guide to Roles and Capabilities', 'http://www.garyc40.com/2010/04/ultimate-guide-to-roles-and-capabilities/')
+  %li= link_to_tab("Justin Tadlock's Members Plugin", 'http://wordpress.org/extend/plugins/members/')
+%p
+  %em
+    Check out my next post on
+    =link_to('Setting Up Ruby on Rails Applications', '/blog/rails_setup/')

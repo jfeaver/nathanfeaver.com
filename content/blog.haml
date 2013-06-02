@@ -1,0 +1,26 @@
+---
+title: "Enumerable Blog"
+sidebar_item: 2
+description: "About coding, web development, and fun to be had in tech"
+---
+#archive
+  -blog_posts = Categories.find( :items_of => '/blog/' )
+  -posted = {}
+  -blog_posts.each do |post|
+    -date = post[:created_at]
+    -year = date.year.to_s.to_sym
+    -unless posted[year]
+      %h2= "#{date.strftime('%Y')} Posts"
+      %hr
+      -posted[year] = true
+    %a.button-link{:href => post.path }
+      .post-preview
+        .post-date
+          .month= date.strftime('%^b')
+          .day
+            -match, number, suffix = *date.day.ordinalize.match(/(\d+)(\w+)/)
+            %span.number= number
+            %sup.suffix>= suffix
+        .post-preview-content 
+          %span.button-link-title= post[:subtitle] ? "#{post[:title]} - #{post[:subtitle]}" : post[:title]
+          %p.description= post[:description]

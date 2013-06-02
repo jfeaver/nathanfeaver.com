@@ -1,0 +1,194 @@
+---
+title: "Learning to Program: The Single Responsibility Principle"
+created_at: 2012-10-13
+featured_image: /images/blog/single_responsibility_principle/
+landscape: true
+techs:
+  - Ruby
+description: 
+  "Understanding the Single Responsibility Principle lays the foundation for becoming a good object oriented
+  programmer.  In this post, I walk through an example, using the principle, and offer an exercise for the reader."
+keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Programming, Hello World]
+---
+%p
+  A concept that is difficult for new programmers to grasp is object oriented design (OOD).  Many tutorials
+  cover the concepts of objects and have you build them but it is difficult for the new programmer to see where
+  these concepts will be useful.  Here I give some pointers to young programmers who have finished the tutorials
+  but want a better understanding of OOD.  Today, I'm focusing on a foundation of OOD: The Single Responsibility
+  Principle.
+.sticky
+  %h4.sticky-title Single Responsibility Principle
+  %p
+    =link_to_tab('According to Wikipedia:', 'http://en.wikipedia.org/wiki/Single_responsibility_principle')
+    %blockquote
+      In object-oriented programming, the single responsibility principle states that every class should have a 
+      single responsibility, and that responsibility should be entirely encapsulated by the class. All its services 
+      should be narrowly aligned with that responsibility.
+%p
+  The Single Responsibility Principle (SRP) makes our code more valuable by making it easy to understand and reuse.  
+  By forcing our classes to have just one responsibility, it becomes easier to quickly figure 
+  out what various functions and other bits of code do because we already know that it must fit inside the class's
+  responsibility.
+%p
+  The code is also more reusable.  If a class has one specific job to do then you can use it
+  whenever you need that job performed.  If it has multiple jobs on the other hand, you are forced to either re-write
+  code or suffer additional overhead when you want to perform one of the jobs.
+=blog_heading('Example: Hello.rb')
+%p
+  Learning object oriented design is best through practice!  Let's walk through an example and then I want you to try using
+  SRP yourself.
+%p
+  Let's start with a simple program that asks for a user's name and says hello:
+%pre
+  %code.ruby
+    :plain
+      puts <span class="Special">&quot;</span><span class="Constant">Please enter your name:</span><span class="Special">\n</span><span class="Special">&quot;</span>
+      name = gets.chomp
+      puts <span class="Special">&quot;</span><span class="Constant">Hello </span><span class="Special">&#35;{</span>name<span class="Special">}</span><span class="Special">&quot;</span>
+%p
+  To make this code reusable let's put it in its own class.
+  Name the new class by the responsibility it will have.  I've decided to call my new class 
+  =succeed ':' do
+    %span.Type Greeter
+%pre
+  %code.ruby
+    :plain
+      <span class="PreProc">class</span> <span class="Type">Greeter</span>
+        <span class="PreProc">def</span> <span class="Identifier">greet</span>
+          puts <span class="Special">&quot;</span><span class="Constant">Please enter your name:</span><span class="Special">\n</span><span class="Special">&quot;</span>
+          name = gets.chomp
+          puts <span class="Special">&quot;</span><span class="Constant">Hello </span><span class="Special">&#35;{</span>name<span class="Special">}</span><span class="Special">&quot;</span>
+        <span class="PreProc">end</span>
+      <span class="PreProc">end</span>
+
+      <span class="Type">Greeter</span>.new.greet
+%p
+  Good, this code yields the same result and follows the SRP (the Greeter class's one responsibility is to greet).
+  Unfortunately, it doesn't seem like a big improvement.  Instead of applying the SRP to just classes, let's apply 
+  it to methods.  Applying the SRP to Greeter's greet method, I can 
+  see two distinct responsibilities: Getting the name and saying hello.  Let's separate those into new methods.
+%pre
+  %code.ruby
+    :plain
+      <span class="PreProc">class</span> <span class="Type">Greeter</span>
+
+        <span class="PreProc">def</span> <span class="Identifier">greet</span>
+          introduce
+          say_hello
+        <span class="PreProc">end</span>
+
+        <span class="PreProc">def</span> <span class="Identifier">introduce</span>
+          puts <span class="Special">&quot;</span><span class="Constant">Please enter your name:</span><span class="Special">\n</span><span class="Special">&quot;</span>
+          <span class="Identifier">@name</span> = gets.chomp
+        <span class="PreProc">end</span>
+
+        <span class="PreProc">def</span> <span class="Identifier">say_hello</span>
+          puts <span class="Special">&quot;</span><span class="Constant">Hello </span><span class="Special">&#35;{</span><span class="Identifier">@name</span><span class="Special">}</span><span class="Special">&quot;</span>
+        <span class="PreProc">end</span>
+      <span class="PreProc">end</span>
+
+      <span class="Type">Greeter</span>.new.greet
+%p
+  This is looking much better.  The Greeter class has one responsibility and each of it's methods has a single 
+  responsibility (the responsibility of the greet method now is performing the Greeter's actions).  However, 
+  there are some small changes that will make it a little better.
+%p
+  Think about the introduce and say_hello methods.  These are actions that the Greeter performs but are they
+  actions that you'd expect to ask the greeter to do or just something the Greeter knows how to do?  It's arguable
+  but in my mind it doesn't make sense to ask the Greeter to introduce or to say_hello.  In this case,
+  I'll make those methods private.  Other programmers that use Greeter won't have to know what the extra methods
+  are, they'll just have to know that the Greeter object can greet.
+%p
+  Secondly, I don't like the instance variable, @name.
+  Think of instance variables as something the object has.
+  "a greeter knows a @name" doesn't make as much sense here as "a greeter knows a @guest_name".
+%pre
+  %code.ruby
+    :plain
+      <span class="PreProc">class</span> <span class="Type">Greeter</span>
+
+        <span class="PreProc">def</span> <span class="Identifier">greet</span>
+          introduce
+          say_hello
+        <span class="PreProc">end</span>
+
+        <span class="Statement">private</span>
+
+        <span class="PreProc">def</span> <span class="Identifier">introduce</span>
+          puts <span class="Special">&quot;</span><span class="Constant">Please enter your name:</span><span class="Special">\n</span><span class="Special">&quot;</span>
+          <span class="Identifier">@guest_name</span> = gets.chomp
+        <span class="PreProc">end</span>
+
+        <span class="PreProc">def</span> <span class="Identifier">say_hello</span>
+          puts <span class="Special">&quot;</span><span class="Constant">Hello </span><span class="Special">&#35;{</span><span class="Identifier">@guest_name</span><span class="Special">}</span><span class="Special">&quot;</span>
+        <span class="PreProc">end</span>
+      <span class="PreProc">end</span>
+
+      <span class="Type">Greeter</span>.new.greet
+%p
+  I'm happy with this as far as SRP goes. Every piece of code has a specific purpose that is made clear
+  by its title (Greeter greets, introduce introduces the user, say_hello says hello).  Using the Greeter class
+  in other contexts will now be simple and fixing bugs in it will be straight forward.
+.sticky
+  %h4.sticky-title Decisions, decisions...
+  %p
+    Perhaps you decided on a different class name like UserIO or NameCollector.
+    That is okay.
+    While making design decisions, you should follow your best impression for now and not overanalyze.
+    Analyzing design decisions now doesn't protect you from the risk of change.
+    You'll also get better with practice.
+=blog_heading('Exercise: FizzBuzz')
+%p
+  Now you try!  Refactor the FizzBuzz program keeping the single responsibility principle in mind.
+  A FizzBuzz program takes a number and returns a value depending on if the number is a multiple of 3 or 5
+  like this:
+%table
+  %thead
+    %tr
+      %th Input
+      %th Output
+  %tbody
+    %tr
+      %td Multiple of 3
+      %td "Fizz"
+    %tr
+      %td Multiple of 5
+      %td "Buzz"
+    %tr
+      %td Multiple of 3 and 5
+      %td "FizzBuzz"
+    %tr
+      %td Any other number, n
+      %td n
+%p
+  Here is a quick and dirty implementation (Hard to read! Hard to debug! Hard to extend! Don't write code like 
+  this unless you need to):
+%pre
+  %code.ruby
+    :plain
+      n = gets.chomp.to_i
+      puts (n % <span class="Constant">3</span> == <span class="Constant">0</span> &amp;&amp; n % <span class="Constant">5</span> == <span class="Constant">0</span>) &amp;&amp; <span class="Special">'</span><span class="Constant">FizzBuzz</span><span class="Special">'</span> || (n % <span class="Constant">3</span> == <span class="Constant">0</span>) &amp;&amp; <span class="Special">'</span><span class="Constant">Fizz</span><span class="Special">'</span> || (n % <span class="Constant">5</span> == <span class="Constant">0</span>) &amp;&amp; <span class="Special">'</span><span class="Constant">Buzz</span><span class="Special">'</span> || n
+%p
+  Email me your solution at 
+  %span.fake_email nathan at nathanfeaver.com
+  and I'll give you some feedback and share my solution.
+=blog_heading('Concluding Remarks')
+%p
+  =link_to('Sandi Metz', '/bookshelf/poodr/')
+  gave me a good method to determine if a class is following the Single Responsiblity Principle:
+  Ask it what it does!
+  Say it out loud:
+  %span{:style => 'font-style: italic'} "Mr. Greeter, what do you do?"
+  If its answer is a simple and short;
+  =succeed ',' do
+    %span{:style => 'font-style: italic'} "I greet people"
+  then it's correctly designed.
+  However, if the answer has any commas, 'and's, or 'or's then the class probably needs to be split into 
+  two or more classes.
+%p
+  It might be strange at first creating new classes.
+  The grouping of computer tasks is not always intuitive and won't map exactly to real world objects.  
+  Keep at it, and don't be afraid to build classes like PostBuilder or TimeChecker.
+
+            
+

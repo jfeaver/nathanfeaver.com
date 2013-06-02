@@ -1,0 +1,39 @@
+---
+title: Portfolio
+description: "A Sampling of my Work in Web Development"
+---
+#portfolio
+  %h2 Freelance Work
+  -Categories.find( :items_of => '/portfolio/' ).each do |portfolio_piece|
+    =hash_location_for portfolio_piece[:title]
+    .portfolio_piece.clearfix
+      =get_featured_image portfolio_piece, 'floated_img_border'
+      .portfolio_piece_info
+        %h4= portfolio_piece[:title]
+        %ul
+          %li
+            %strong Technologies Used:
+            =portfolio_piece[:techs].join(', ')
+          %li
+            -if portfolio_piece[:contractor]
+              %strong Contracted:
+              =portfolio_piece[:created_at].strftime("%B %Y")
+              \-
+              = portfolio_piece[:end_date] ? portfolio_piece[:end_date].strftime("%B %Y") : "Present"
+            -else
+              %strong Built:
+              =portfolio_piece[:created_at].strftime("%B %Y")
+          %li
+            %strong Description:
+            -portfolio_piece[:description].each do |p|
+              %p
+                =p
+          -if portfolio_piece[:link]
+            %li
+              %strong Link:
+              =link_to_tab( portfolio_piece[:title], portfolio_piece[:link] )
+          -if portfolio_piece[:code]
+            %li
+              %strong Code Repository:
+              =link_to( portfolio_piece[:title], portfolio_piece[:code] )
+
