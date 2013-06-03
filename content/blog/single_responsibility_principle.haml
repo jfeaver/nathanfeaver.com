@@ -5,7 +5,7 @@ featured_image: /images/blog/single_responsibility_principle/
 landscape: true
 techs:
   - Ruby
-description: 
+description:
   "Understanding the Single Responsibility Principle lays the foundation for becoming a good object oriented
   programmer.  In this post, I walk through an example, using the principle, and offer an exercise for the reader."
 keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Programming, Hello World]
@@ -21,12 +21,12 @@ keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Progr
   %p
     =link_to_tab('According to Wikipedia:', 'http://en.wikipedia.org/wiki/Single_responsibility_principle')
     %blockquote
-      In object-oriented programming, the single responsibility principle states that every class should have a 
-      single responsibility, and that responsibility should be entirely encapsulated by the class. All its services 
+      In object-oriented programming, the single responsibility principle states that every class should have a
+      single responsibility, and that responsibility should be entirely encapsulated by the class. All its services
       should be narrowly aligned with that responsibility.
 %p
-  The Single Responsibility Principle (SRP) makes our code more valuable by making it easy to understand and reuse.  
-  By forcing our classes to have just one responsibility, it becomes easier to quickly figure 
+  The Single Responsibility Principle (SRP) makes our code more valuable by making it easy to understand and reuse.
+  By forcing our classes to have just one responsibility, it becomes easier to quickly figure
   out what various functions and other bits of code do because we already know that it must fit inside the class's
   responsibility.
 %p
@@ -47,7 +47,7 @@ keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Progr
       puts <span class="Special">&quot;</span><span class="Constant">Hello </span><span class="Special">&#35;{</span>name<span class="Special">}</span><span class="Special">&quot;</span>
 %p
   To make this code reusable let's put it in its own class.
-  Name the new class by the responsibility it will have.  I've decided to call my new class 
+  Name the new class by the responsibility it will have.  I've decided to call my new class
   =succeed ':' do
     %span.Type Greeter
 %pre
@@ -64,8 +64,8 @@ keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Progr
       <span class="Type">Greeter</span>.new.greet
 %p
   Good, this code yields the same result and follows the SRP (the Greeter class's one responsibility is to greet).
-  Unfortunately, it doesn't seem like a big improvement.  Instead of applying the SRP to just classes, let's apply 
-  it to methods.  Applying the SRP to Greeter's greet method, I can 
+  Unfortunately, it doesn't seem like a big improvement.  Instead of applying the SRP to just classes, let's apply
+  it to methods.  Applying the SRP to Greeter's greet method, I can
   see two distinct responsibilities: Getting the name and saying hello.  Let's separate those into new methods.
 %pre
   %code.ruby
@@ -89,8 +89,8 @@ keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Progr
 
       <span class="Type">Greeter</span>.new.greet
 %p
-  This is looking much better.  The Greeter class has one responsibility and each of it's methods has a single 
-  responsibility (the responsibility of the greet method now is performing the Greeter's actions).  However, 
+  This is looking much better.  The Greeter class has one responsibility and each of it's methods has a single
+  responsibility (the responsibility of the greet method now is performing the Greeter's actions).  However,
   there are some small changes that will make it a little better.
 %p
   Think about the introduce and say_hello methods.  These are actions that the Greeter performs but are they
@@ -161,7 +161,7 @@ keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Progr
       %td Any other number, n
       %td n
 %p
-  Here is a quick and dirty implementation (Hard to read! Hard to debug! Hard to extend! Don't write code like 
+  Here is a quick and dirty implementation (Hard to read! Hard to debug! Hard to extend! Don't write code like
   this unless you need to):
 %pre
   %code.ruby
@@ -169,7 +169,7 @@ keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Progr
       n = gets.chomp.to_i
       puts (n % <span class="Constant">3</span> == <span class="Constant">0</span> &amp;&amp; n % <span class="Constant">5</span> == <span class="Constant">0</span>) &amp;&amp; <span class="Special">'</span><span class="Constant">FizzBuzz</span><span class="Special">'</span> || (n % <span class="Constant">3</span> == <span class="Constant">0</span>) &amp;&amp; <span class="Special">'</span><span class="Constant">Fizz</span><span class="Special">'</span> || (n % <span class="Constant">5</span> == <span class="Constant">0</span>) &amp;&amp; <span class="Special">'</span><span class="Constant">Buzz</span><span class="Special">'</span> || n
 %p
-  Email me your solution at 
+  Email me your solution at
   %span.fake_email nathan at nathanfeaver.com
   and I'll give you some feedback and share my solution.
 =blog_heading('Concluding Remarks')
@@ -183,12 +183,12 @@ keywords: [Object Oriented Design, Single Responsibility Principle, Learn, Progr
   =succeed ',' do
     %span{:style => 'font-style: italic'} "I greet people"
   then it's correctly designed.
-  However, if the answer has any commas, 'and's, or 'or's then the class probably needs to be split into 
+  However, if the answer has any commas, 'and's, or 'or's then the class probably needs to be split into
   two or more classes.
 %p
   It might be strange at first creating new classes.
-  The grouping of computer tasks is not always intuitive and won't map exactly to real world objects.  
+  The grouping of computer tasks is not always intuitive and won't map exactly to real world objects.
   Keep at it, and don't be afraid to build classes like PostBuilder or TimeChecker.
 
-            
+
 

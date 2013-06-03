@@ -16,8 +16,8 @@
       font-size: 120%;
       color: #e1e1f7;
     }
-    .day { 
-      padding-top: 10px; 
+    .day {
+      padding-top: 10px;
       line-height: 95%;
     }
     .number, .suffix {
@@ -27,19 +27,20 @@
     .number { font-size: 160%; }
     .suffix { font-size: 110%; }
   }
-  .post-preview-content { 
+  .post-preview-content {
     display: inline-block;
     width: 530px;
   }
 }
 
 article pre {
-  color: white;
-  background-color: #300a24;
+  color: #829496;
+  background-color: #002834;
   padding: 8px;
   margin: 0.9em 0;
   overflow: auto;
   overflow-x: scroll;
+  border-radius: 5px;
 }
 
 article code {
