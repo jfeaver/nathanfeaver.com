@@ -12,32 +12,32 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
 ---
 %p
   Recently I built a WordPress website where visitors can create testimonials with pictures.
-  The examples in the 
-  %a{:href => "http://codex.wordpress.org/Main_Page", :target => '_blank'} WordPress documentation 
+  The examples in the
+  %a{:href => "http://codex.wordpress.org/Main_Page", :target => '_blank'} WordPress documentation
   is limited and doesn't illustrate the combination of custom
-  post types and custom roles. There's also been a bit of 
+  post types and custom roles. There's also been a bit of
   %a{:href => "http://wordpress.org/support/topic/anyone-managed-to-get-custom-post-types-capabilities-working?replies=47", :target => '_blank'} confusion
   %a{:href => "http://wordpress.stackexchange.com/questions/14553/allow-member-to-have-access-to-custom-post-type-only-permission-to-only-edit-th", :target => '_blank'} on forums
   so here's a tutorial that explains the necessary code.
 %p
-  =link_to('Go here', '/blog/custom_post_types_and_roles_in_wordpress_2/' ) 
+  =link_to('Go here', '/blog/custom_post_types_and_roles_in_wordpress_2/' )
   if you're looking for Part 2 which explains how to add a new user role with the right permissions.
 =blog_heading('Constructing register_post_type()')
-%p 
+%p
   A call to
   =link_to_wp_function('register_post_type()')
   from
   %code functions.php
-  is used to set up a new post type.  In our example, this post type will be a testimonial post.  
-  Once you're done here, make sure to keep reading 
+  is used to set up a new post type.  In our example, this post type will be a testimonial post.
+  Once you're done here, make sure to keep reading
   =link_to_hash('Creating Administrator Permissions')
-  below since you won't 
+  below since you won't
   see this post type show up on your Dashboard until you get that set up.
 %p Without further ado, here's the code:
 %pre
   %code
-    :escaped
-      # /wp-content/themes/theme_name/functions.php      
+    :preserve
+      # /wp-content/themes/theme_name/functions.php
       # Create a Testimonials Post Type for Visitors
       function create_testimonial_post_type() {
         register_post_type( 'testimonials',
@@ -55,19 +55,19 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
       }
       add_action( 'init', 'create_testimonial_post_type' );
 %p
-  If you're new to editing 
+  If you're new to editing
   %a{:href => "http://codex.wordpress.org/Theme_Development#Functions_File", :target => '_blank'}
     %code functions.php
   then should know that the name of this function is up to you.
-  I like to give my functions full, unabbreviated names that reflect the purpose of the function 
+  I like to give my functions full, unabbreviated names that reflect the purpose of the function
   so that it is easy to remember and helpful to future editors.
 %p
-  The 
+  The
   %code register_post_type
   function takes two arguments: the name of the post type (you'll use this name in other WP functions, as in
   =succeed ')' do
     =link_to_wp_function("query_posts('post_type' => 'testimonials')")
-  and an associative array of various 
+  and an associative array of various
   =succeed '.' do
     =link_to_tab 'arguments', "http://codex.wordpress.org/Function_Reference/register_post_type#Arguments"
   Be sure to check these out since I'm only using what is necessary for this example.
@@ -81,7 +81,7 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
   %dt public
   %dd By setting this to true, WordPress allows the posts to be visible on the Dashboard to front-end users.
   %dt has_archive
-  %dd 
+  %dd
     This tells WP that you'd like this post type to be available to an
     =link_to_tab 'archive page', "http://codex.wordpress.org/Creating_an_Archive_Index"
     for viewing a list of testimonials.  I'd like to have a page with all testimonials so this needs to be true.
@@ -91,47 +91,47 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
   %dd
     Cap stands for capabilities and setting this argument to true tells WordPress to call the
     =link_to_wp_function('map_meta_cap')
-    function with respect to this post type.  This allows you to use meta capabilities rather than primitive capabilities 
-    (which are more work).  See the 
+    function with respect to this post type.  This allows you to use meta capabilities rather than primitive capabilities
+    (which are more work).  See the
     =link_to_tab 'Arguments > Capabilities documentation (scroll down a bit)', "http://codex.wordpress.org/Function_Reference/register_post_type#Arguments"
     for more info.
 %p
   The
   =link_to_wp_function('add_action()')
-  function simply tells WordPress that we want it to process the 
+  function simply tells WordPress that we want it to process the
   %code create_testimonial_post_type()
   code when the theme initializes for any page render.
 
 /End of Constructing register_post_type()
 
 .sticky
-  %h4.sticky-title 
-    Note on 
+  %h4.sticky-title
+    Note on
     =link_to_wp_function('__()', '_2')
-    and 
+    and
     =link_to_wp_function('_e()')
     Functions
   %p
-    WordPress and community-built plugins have made it easy to build a 
+    WordPress and community-built plugins have made it easy to build a
     =link_to_tab('multilingual blog', 'http://codex.wordpress.org/Multilingual_WordPress')
-    using these translation functions. If you want to build a multilingual site, use one of these 
-    functions on all user-facing Strings (like the post type labels above). Then make sure you've got the 
+    using these translation functions. If you want to build a multilingual site, use one of these
+    functions on all user-facing Strings (like the post type labels above). Then make sure you've got the
     =link_to_tab('translations set up yourself', 'http://codex.wordpress.org/I18n_for_WordPress_Developers')
-    or by using a 
+    or by using a
     =succeed('.') do
       =link_to_tab('translation plugin', 'http://wordpress.org/extend/plugins/search.php?q=translate')
   %p
     %em These functions are not necessary on an English only website.
   %p
-    %code __() 
-    is an alias for the 
-    =link_to_wp_function('translate()') 
+    %code __()
+    is an alias for the
+    =link_to_wp_function('translate()')
     function. The first argument should be the string that gets translated.
     If you're developing a plugin, you need to add a unique identifier string as a second argument as well
     =surround('(', ').') do
       =link_to_tab('see the documentation', 'http://codex.wordpress.org/I18n_for_WordPress_Developers#Translating_Plugins')
-    Finally, 
-    %code _e() 
+    Finally,
+    %code _e()
     echoes the string to the page and is an alias for
     =succeed('.') do
       %code
@@ -148,8 +148,8 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
 %p Here's the code to give the administrator and editor roles all CRUD permissions:
 %pre
   %code
-    :escaped
-      # /wp-content/themes/theme_name/functions.php      
+    :preserve
+      # /wp-content/themes/theme_name/functions.php
       # Give Administrators and Editors All Testimonial Capabilities
       function add_testimonial_caps_to_admin() {
         $caps = array(
@@ -181,17 +181,17 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
   This requires a little less explanation. The basic process here is to gather all the permissions that
   you'd like to give out in an array (WordPress likes to refer to permissions as capabilities, hence the
   %code $caps
-  array).  Next gather all user roles you're interested in. I give the Administrator and Editor Roles full 
+  array).  Next gather all user roles you're interested in. I give the Administrator and Editor Roles full
   permissions to moderate inappropriate testimonials. Finally loop through and assign permissions.
 %p
   I'm using two new WordPress functions which behave as you'd expect:
 %dl
   %dt= link_to_wp_function('get_role()')
   %dd
-    Retrieves the PHP object for a 
+    Retrieves the PHP object for a
     =link_to('particular user role','http://codex.wordpress.org/Roles_and_Capabilities#Summary_of_Roles')
   %dt= link_to_wp_function 'add_cap()'
-  %dd 
+  %dd
     Instance method of each role which adds the supplied permission or capability to that role.
     The permissions that you can add are listed
     =link_to('here', 'http://codex.wordpress.org/Roles_and_Capabilities#Capabilities')
@@ -213,5 +213,5 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
     to learn about creating a custom user role and setting the right permissions!
 
 /End of Creating Administrator Permissions
-      
+
 

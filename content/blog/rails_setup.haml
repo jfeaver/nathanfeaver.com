@@ -17,7 +17,7 @@ keywords: [Recipes]
 .update
   =update(:title => 'Update: More Rails Setup Guides', :date => '2012-10-17', :first => true)
   %p
-    After writing this post, I found the 
+    After writing this post, I found the
     =link_to_tab('official Rails Setup Tutorials', 'http://railsapps.github.com/')
     on Github.  These will likely stay up to date and do include more setup variants.  Enjoy!
 %p
@@ -34,7 +34,7 @@ keywords: [Recipes]
 =blog_heading('My Ruby on Rails Recipe')
 %pre
   %code
-    :escaped
+    :preserve
       Steps to setup a Rails App:
 
       > rails new AppName -T  #Skips TestUnit (in favor of rspec), specify database with "-d postgresql"
@@ -109,7 +109,7 @@ keywords: [Recipes]
       > git mv app/assets/stylesheets/*.css.scss app/assets/stylesheets/compass/
       > git commit -m 'set up scss architecture with compass'
 
-      # Add some empty scss files (like style.scss, reset.scss, etc) to folders 
+      # Add some empty scss files (like style.scss, reset.scss, etc) to folders
       #  that don't have any CSS files to avoid compile errors
       > git add/commit
 
@@ -140,10 +140,10 @@ keywords: [Recipes]
 
       > git add/commit 'Scaffolding Generated'
 %p
-  I hope this is helpful. Let me know if you have any questions or suggestions in the comments :) 
+  I hope this is helpful. Let me know if you have any questions or suggestions in the comments :)
 %p
   %em
-    Check out the 
+    Check out the
     =link_to('next post', '/blog/single_responsibility_principle/')
     covering the single responsibility principle and object oriented design.
     It was inspired by talks given by Sandi Metz and Ben Orenstein at

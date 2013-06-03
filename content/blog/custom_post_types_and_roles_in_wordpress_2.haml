@@ -10,13 +10,13 @@ description: "Part 2 of a two part WordPress tutorial describing how to add cust
 keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_role, Capabilities, Permissions]
 ---
 %p
-  This is part 2 of a two part WordPress tutorial describing how to add custom user roles and post types 
+  This is part 2 of a two part WordPress tutorial describing how to add custom user roles and post types
   with customized permissions using a customer testimonials example.
 %p
   =succeed ',' do
     =link_to('Click here for Part 1', '/blog/custom_post_types_and_roles_in_wordpress/')
-  which shows how to create a Testimonials post type, and give full create, read, update, and destroy (CRUD) 
-  permissions to the Administrator and Editor roles. Here, in the second part, I'll create a custom user role that 
+  which shows how to create a Testimonials post type, and give full create, read, update, and destroy (CRUD)
+  permissions to the Administrator and Editor roles. Here, in the second part, I'll create a custom user role that
   visitors can use to post and edit their own testimonials.
 
 =blog_heading("Create a User Role with add_role()")
@@ -29,7 +29,7 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
   visitors will never see their 'HappyCustomer' title).
 %pre
   %code
-    :escaped
+    :preserve
       # /wp-content/themes/theme_name/functions.php
       # Create HappyCustomer Role for Testimonials
       function happy_customer_setup() {
@@ -40,11 +40,11 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
   %code add_role
   takes three arguments, a programmatic name, a display name, and an associative array of capabilities/permissions.
   Here, I'm leaving out the array of permissions because I'd like to set up similar permissions for other
-  non-admin roles later on (keep your code 
+  non-admin roles later on (keep your code
   =succeed ').' do
     =link_to_tab('DRY',"http://en.wikipedia.org/wiki/Don't_repeat_yourself")
   If you'd like to describe specific permissions for the HappyCustomer role, then
-  describe them here in an array similar to the 
+  describe them here in an array similar to the
   %code $caps
   array in the code below.
 .sticky
@@ -60,7 +60,7 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
   Here's the code for that:
 %pre
   %code
-    :escaped
+    :preserve
       # /wp-content/themes/theme_name/functions.php
       # Give other roles Testimonial Capabilities
       function add_testimonial_caps_to_non_admin_roles() {
@@ -91,7 +91,7 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
       }
       add_action( 'after_setup_theme', 'add_testimonial_caps_to_non_admin_roles' );
 %p
-  In this code snippet, I collected all the permissions that were appropriate, collected non-administrative roles, 
+  In this code snippet, I collected all the permissions that were appropriate, collected non-administrative roles,
   and finally assigned permissions to the roles.
 %p
   Carefully make a decision for each of these permissions.  You might not want your HappyCustomer to
@@ -106,7 +106,7 @@ keywords: [Tutorial, Custom Post Type, Custom Roles, register_post_type, add_rol
   to remove the undesired permissions:
 %pre
   %code
-    :escaped
+    :preserve
       $bad_caps = array(
         'edit_private_testimonials',
         'edit_others_testimonials',
