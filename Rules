@@ -64,6 +64,8 @@ compile '*' do
       when '/blog/', '/'
         # false -> homepage
         layout 'blog'
+      when '/meditation/'
+        layout 'simple'
       else
         layout 'item'
       end 

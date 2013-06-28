@@ -21,6 +21,6 @@ description: "About coding, web development, and fun to be had in tech"
             -match, number, suffix = *date.day.ordinalize.match(/(\d+)(\w+)/)
             %span.number= number
             %sup.suffix>= suffix
-        .post-preview-content 
+        .post-preview-content
           %span.button-link-title= post[:subtitle] ? "#{post[:title]} - #{post[:subtitle]}" : post[:title]
           %p.description= post[:description]
