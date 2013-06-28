@@ -51,6 +51,8 @@ compile '*' do
         layout 'category'
       when '/beer_report/'
         layout 'beer'
+      when '/meditation/'
+        layout 'simple'
       else
         # A page that yields to the category content
         layout 'page'
@@ -64,11 +66,9 @@ compile '*' do
       when '/blog/', '/'
         # false -> homepage
         layout 'blog'
-      when '/meditation/'
-        layout 'simple'
       else
         layout 'item'
-      end 
+      end
     end
   end
   #end of item.binary?
