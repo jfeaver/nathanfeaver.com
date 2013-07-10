@@ -2,19 +2,37 @@
 
 ############### GET HTML Functions (links and such)  #####################
 
+FEATURED_IMAGE_DIMENSION = '170px'
 def get_featured_image item, img_class = ''
-  image_item = @items.find {|i| i.identifier == item[:featured_image]}
-  img_class += ' featured'
-  img_class += ' landscape' if item[:landscape]
-  tag = "<img class='#{img_class}' src='/"
+  atts = {}
+  image_item = featured_image?
+  atts[:class] = "#{img_class} featured"
+  atts[:class] += ' landscape' if item[:landscape]
   if image_item
-    tag += image_item.raw_filename.match(/content\/(.+)/)[1]
+    atts[:src] = "/#{image_item.raw_filename.match(/content\/(.+)/)[1]}"
   else
-    tag += "images/no_image.png"
+    atts[:src] = "/images/no_image.png"
   end
-  tag += "' "
-  tag += item[:landscape] ? 'width=' : 'height='
-  tag += "'170px' />"
+  if item[:landscape]
+    atts[:width] = FEATURED_IMAGE_DIMENSION
+  else
+    atts[:height] = FEATURED_IMAGE_DIMENSION
+  end
+  image_tag(atts)
+end
+
+def featured_image?
+  @items.find {|i| i.identifier == item[:featured_image]}
+end
+
+def image_tag attrs = {}
+  atts_string = ''
+  attrs.each do |att, value|
+    str = nil
+    str = "#{att}=#{value}"
+    atts_string += "#{str} "
+  end
+  "<img #{atts_string} />"
 end
 
 def render_item item

@@ -17,9 +17,10 @@
             %span.title-sub-text= "- #{post[:subtitle]}"
           %span.date
             -last = (post[:last_updated] || post[:created_at])
-            Last Updated: 
+            Last Updated:
             %time= last.strftime('%b. %d, %Y')
           %hr
+          =get_featured_image @item, 'floated_img_border' if featured_image?
           -if post == @item
             =yield
           -else
