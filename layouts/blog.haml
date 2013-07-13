@@ -20,7 +20,7 @@
             Last Updated:
             %time= last.strftime('%b. %d, %Y')
           %hr
-          =get_featured_image @item, 'floated_img_border' if featured_image?
+          =get_featured_image post, 'floated_img_border' if featured_image? post
           -if post == @item
             =yield
           -else

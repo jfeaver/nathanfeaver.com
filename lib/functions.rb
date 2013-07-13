@@ -5,7 +5,7 @@
 FEATURED_IMAGE_DIMENSION = '170px'
 def get_featured_image item, img_class = ''
   atts = {}
-  image_item = featured_image?
+  image_item = featured_image? item
   atts[:class] = "#{img_class} featured"
   atts[:class] += ' landscape' if item[:landscape]
   if image_item
@@ -21,7 +21,7 @@ def get_featured_image item, img_class = ''
   image_tag(atts)
 end
 
-def featured_image?
+def featured_image? item
   @items.find {|i| i.identifier == item[:featured_image]}
 end
 
