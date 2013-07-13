@@ -3,11 +3,12 @@
 ############### GET HTML Functions (links and such)  #####################
 
 FEATURED_IMAGE_DIMENSION = '170px'
-def get_featured_image item, img_class = ''
+def get_featured_image item, custom_class = nil
   atts = {}
   image_item = featured_image? item
-  atts[:class] = "#{img_class} featured"
-  atts[:class] += ' landscape' if item[:landscape]
+  im_class = [custom_class, 'featured'].compact
+  im_class << 'landscape' if item[:landscape]
+  atts[:class] = "'#{im_class.join(' ')}'"
   if image_item
     atts[:src] = "/#{image_item.raw_filename.match(/content\/(.+)/)[1]}"
   else
