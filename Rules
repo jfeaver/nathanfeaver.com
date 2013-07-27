@@ -32,6 +32,9 @@ compile '/css/base/*' do end
 compile '/css/generic/*' do end
 compile '/css/helpers/*' do end
 
+# Ignore Code Snippets
+compile '/code/*' do end
+
 compile '/css/*/' do
   filter :sass, :syntax => :scss
 end
@@ -74,6 +77,7 @@ compile '*' do
   #end of item.binary?
 end
 
+# CSS Architecture
 route '/css/modules/*' do nil end
 route '/css/base/*' do nil end
 route '/css/generic/*' do nil end
@@ -87,10 +91,15 @@ route '/js/*' do
   item.identifier.chop + '.js'
 end
 
+route '/code/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
 route '/portfolio/*' do
   if item.identifier == '/portfolio/'
     item.identifier + 'index.html'
   else
+    # Ignore Individual Portfolio Items
     nil
   end
 end
