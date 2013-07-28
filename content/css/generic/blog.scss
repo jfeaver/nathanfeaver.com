@@ -47,9 +47,17 @@ article code {
   font-family: "Andale Mono", "bitstream vera sans mono", monaco, "lucida console", "courier new", courier, sans;
   a.code_download {
     color: #4E4;
+    border: 1px solid #292;
+    padding: 3px;
+    font-size: 75%;
+    @extend .box-round;
 
     &:visited {
       color: #4E4;
+    }
+    &:hover {
+      background-color: #004251;
+      text-decoration: none;
     }
   }
 }
