@@ -1,0 +1,127 @@
+---
+title: "The Apprentice's Guide to Mastering JavaScript"
+created_at: 2013-07-27
+featured_image: /images/blog/mastering_javascript/
+landscape: true
+techs:
+  - JavaScript
+description: "A guide to understanding key concepts in pursuit of mastering the JavaScript language.  I share the most helpful resources that go beyond basic principles, explaining finer details or philosophies of the language used by seasoned professionals."
+keywords: [guide, javascript, learning]
+---
+%h3 Why Am I Writing This?
+%p
+  JavaScript has been more difficult for me to master than Ruby was (the two languages
+  I am currently most fluent in).
+
+  JavaScript is object oriented but doesn't utilize
+  %a{href: 'http://www.ruby-doc.org/core-2.0/Class.html'} classes
+  and the syntax surrounding objects, properties, and methods is fairly unique compared
+  to C++ and Java (the languages I learned as a kid).
+
+  Finally, there are many good resources and just as many awful resources available to
+  those trying to learn.  Piecing together the best tools and becoming fluent with best
+  practices in the developer community can be challenging.  I hope to accelerate that
+  learning process for the reader's of this blog post.
+
+%h3 The Apprentice's Goal
+%p
+  To gain from their master a fluency of the tools and craftsmanship involved in their
+  profession.  I have written this blog post for the person whose goal is to learn the
+  JavaScript syntax (the tool) as well as the usage of JavaScript
+  to build pragmatic client-side applications (the craft).
+
+.sticky
+  %p
+    I highly recommend reading the excellent overview of the JavaScript language in
+    =succeed('.') do
+      %a{ href: 'http://www.ecma-international.org/ecma-262/5.1/#sec-4.2' } section 4.2 of the ECMAScript specification
+  %p
+    NOTE:
+    %a{ href: 'https://en.wikipedia.org/wiki/ECMAScript#History' } JavaScript is an ECMAScript implementation
+
+%h3 JavaScript Objects
+%p
+  Writing code with objects helps us to build extensible applications that follow the
+  =succeed('.') do
+    =link_to 'Single Responsibility Principle', '/blog/single_responsibility_principle/'
+  JavaScript's patterns of using objects are significantly different than Ruby so I've
+  decided to focus on this topic.
+%p
+  JavaScript objects are
+  =succeed(',') do
+    %a{ href: 'http://en.wikipedia.org/wiki/Associative_array' } dictionaries
+  similar to a Ruby Hash.
+  They contain properties (like words in the dictionary) that may be looked up to
+  retrieve the value.
+  This value may be data of any type (primitives, strings, or functions).
+  When the value of a property is a function, it is called a method.
+  The most basic JavaScript objects is
+  =succeed('.') do
+    %span.code {}
+
+.sticky
+  %p
+    Learn faster by trying these examples in your browser's JavaScript console: ⌥⌘J in Chrome (Mac),
+    =succeed('.') do
+      %a{ href: 'http://webmasters.stackexchange.com/questions/8525/how-to-open-the-javascript-console-in-different-browsers'} other browsers
+
+=render('_code_block', item: @item, file: 'objects', language: 'js') do
+  =code_block(@item, 'objects', 'js')
+
+%p
+  A JavaScript Function is a special type of object because it acts like a constructor
+  to build additional objects:
+
+.todo
+  exercise needed
+
+%h3 Object Inheritance
+%p
+  All JavaScript objects that are created inherit properties from a prototype.  If this
+  prototype is the null value, then the object does not inherit any properties.  The
+  inheritance continues recursively so an object can inherit properties from its prototype's
+  prototype.
+
+.todo
+  exercise needed
+
+%h3 Best Resources
+%p
+  Many online resources for learning JavaScript are not object oriented and do not adhere
+  to the best practices of master JavaScript programmers. These are the best resources I
+  have found while learning JavaScript.
+.section
+  %h5 Beginners (little to no experience programming)
+  %ul
+    %li
+      %a{ href: 'http://www.codecademy.com/tracks/javascript' } Code Academy's JavaScript Course
+.section
+  %h5 Novices
+  %ul
+    %li
+      %a{ href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide' } Mozilla JavaScript Guide
+    %li
+      %a{ href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference' } Mozilla JavaScript Reference
+    %li
+      %a{ href: 'http://pivotal.github.io/jasmine/' } Jasmine Testing Framework
+    %li
+      %a{ href: 'http://stackoverflow.com/questions/1646698/what-is-the-new-keyword-in-javascript' } The `new` keyword
+    %li
+      %a{ href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger' } The `debugger` keyword
+    %li
+      %a{ href: 'http://jquery.com/' } jQuery for DOM Manipulation
+.section
+  %h5 Almost Fluent JavaScripters
+  %ul
+    %li
+      %a{ href: 'http://www.ecma-international.org/ecma-262/5.1/' } ECMAScript 5.1 Language Specification
+      %ul
+        %li Especially Sections 1-4, 8, 11, 15, 16
+        %li
+          %a{ href: 'http://ecma-international.org/memento/TC39-M.htm' } ECMAScript 6 is scheduled for release in December 2013
+    %li
+      %a{ href: 'http://karma-runner.github.io/' } Karma Test Runner (Used to be called Testacular)
+    %li
+      %a{ href: 'http://backbonejs.org/' } Backbone Framework
+    %li
+      %a{ href: 'http://lodash.com/' } Lo-Dash Utilities
