@@ -20,6 +20,7 @@ preprocess do
   about = items.find {|i| i.identifier == '/about/' }
   home = items.find {|i| i.identifier == '/' }
   about[:notice] = home[:notice]
+
 end
 
 compile '/google89d4b2531f314684/' do

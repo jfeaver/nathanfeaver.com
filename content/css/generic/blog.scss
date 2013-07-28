@@ -45,6 +45,13 @@ article pre {
 
 article code {
   font-family: "Andale Mono", "bitstream vera sans mono", monaco, "lucida console", "courier new", courier, sans;
+  a.code_download {
+    color: #4E4;
+
+    &:visited {
+      color: #4E4;
+    }
+  }
 }
 
 article .todo {
@@ -75,3 +82,14 @@ article {
   margin-top: 8px;
 }
 
+dl ul, ul ul {
+  margin-left: 2em;
+  font-size: 90%;
+}
+
+.section {
+  margin-bottom: 1.5em;
+  li {
+    margin-bottom: 2px;
+  }
+}

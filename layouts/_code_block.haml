@@ -1,0 +1,4 @@
+%pre
+  %code{ class: @language }
+    %p=link_to( '=> Download This Code Block <=', "/code#{@item.identifier}#{@file}.#{@language}", :class => 'code_download' )
+    = yield
