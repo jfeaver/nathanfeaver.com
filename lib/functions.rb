@@ -1,5 +1,9 @@
 # Assorted functions for nathanfeaver.com
 
+def base_dir
+  File.expand_path('../', File.dirname(__FILE__))
+end
+
 ############### GET HTML Functions (links and such)  #####################
 
 FEATURED_IMAGE_DIMENSION = '170px'
