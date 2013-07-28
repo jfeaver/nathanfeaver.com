@@ -65,12 +65,11 @@ keywords: [guide, javascript, learning]
     =succeed('.') do
       %a{ href: 'http://webmasters.stackexchange.com/questions/8525/how-to-open-the-javascript-console-in-different-browsers'} other browsers
 
-=render('_code_block', item: @item, file: 'objects', language: 'js') do
-  =code_block(@item, 'objects', 'js')
+=render('_code_block', item: @item, file: 'objects', language: 'js')
 
 %p
-  A JavaScript Function is a special type of object because it acts like a constructor
-  to build additional objects:
+  A JavaScript Function is a special type of object because it can be used as a constructor
+  to build new objects:
 
 .todo
   exercise needed
