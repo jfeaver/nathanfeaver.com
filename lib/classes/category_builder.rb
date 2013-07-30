@@ -41,8 +41,8 @@ module Nathan::Classes
 
       items.each do |item|
 
-        # Ignore Assets and specified excluded sites
-        unless item.binary? || @excluded.include?( item.identifier )
+        # Ignore Assets, drafts, or specified excluded sites
+        unless item.binary? || @excluded.include?( item.identifier ) || item[:draft]
 
           # Collect Categories
           if item.identifier.match(/^\/\w+\/$/)
