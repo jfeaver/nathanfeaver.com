@@ -1,43 +1,42 @@
 ---
 title: "The Apprentice's Guide to Mastering JavaScript"
-created_at: 2013-07-27
+created_at: 2013-07-30
 featured_image: /images/blog/mastering_javascript/
 landscape: true
 techs:
   - JavaScript
 description: "A guide to understanding key concepts in pursuit of mastering the JavaScript language.  I share the most helpful resources that go beyond basic principles, explaining finer details or philosophies of the language used by seasoned professionals."
 keywords: [guide, javascript, learning]
+draft: true
 ---
 %h3 Why Am I Writing This?
 %p
   JavaScript has been more difficult for me to master than Ruby was (the two languages
   I am currently most fluent in).
 
-  JavaScript is object oriented but doesn't utilize
-  %a{href: 'http://www.ruby-doc.org/core-2.0/Class.html'} classes
-  and the syntax surrounding objects, properties, and methods is fairly unique compared
-  to C++ and Java (the languages I learned as a kid).
+  JavaScript is object-oriented but doesn't utilize class-based objects/inheritance as
+  in Ruby.
 
-  Finally, there are many good resources and just as many awful resources available to
-  those trying to learn.  Piecing together the best tools and becoming fluent with best
-  practices in the developer community can be challenging.  I hope to accelerate that
-  learning process for the reader's of this blog post.
+  Finally, there are many JavaScript learning resources available but too many fail to
+  give insight into best practices or contain anti-patterns.
 
-%h3 The Apprentice's Goal
-%p
-  To gain from their master a fluency of the tools and craftsmanship involved in their
-  profession.  I have written this blog post for the person whose goal is to learn the
-  JavaScript syntax (the tool) as well as the usage of JavaScript
-  to build pragmatic client-side applications (the craft).
+  With these considerations in mind, I hope to acheive the following objectives:
+
+%ul.bullet
+  %li Clarify the differences between JavaScript's prototypical inheritance and Ruby's class-based inheritance
+  %li Identify common methods of object duplication (code re-use) in the JavaScript community
+  %li Share resources that I have found helpful and are recognized by the greater JavaScript community
 
 .sticky
+  %h4.sticky-title Before We Begin
   %p
-    I highly recommend reading the excellent overview of the JavaScript language in
+    Unless you consider yourself fluent in JavaScript, I highly recommend reading the excellent overview of
+    the JavaScript language in
     =succeed('.') do
       %a{ href: 'http://www.ecma-international.org/ecma-262/5.1/#sec-4.2' } section 4.2 of the ECMAScript specification
   %p
     NOTE:
-    %a{ href: 'https://en.wikipedia.org/wiki/ECMAScript#History' } JavaScript is an ECMAScript implementation
+    %a{ href: 'https://en.wikipedia.org/wiki/ECMAScript#History' } JavaScript is an implementation of ECMAScript
 
 %h3 JavaScript Objects
 %p
@@ -71,8 +70,7 @@ keywords: [guide, javascript, learning]
   A JavaScript Function is a special type of object because it can be used as a constructor
   to build new objects:
 
-.todo
-  exercise needed
+=render('_code_block', item: @item, file: 'function_as_constructor', language: 'js')
 
 %h3 Object Inheritance
 %p
@@ -80,11 +78,45 @@ keywords: [guide, javascript, learning]
   prototype is the null value, then the object does not inherit any properties.  The
   inheritance continues recursively so an object can inherit properties from its prototype's
   prototype.
+%p
+  The following example is a slightly modified version taken from a good discussion
+  over at
+  =succeed('.') do
+    %a{ href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#Inheritance' } Mozilla Developer Network
 
-.todo
-  exercise needed
+=render('_code_block', item: @item, file: 'inheritance', language: 'js')
 
-%h3 Best Resources
+%p
+  Wowzers, that's complicated!  Every inherited property must be set to the object's
+  prototype rather than directly to the object.  The constructor of the child class
+  must manually call the constructor of the parent class.  Specifying the
+  inheritance is fairly verbose
+  =surround('(',').') do
+    %span.code Apprentice.prototype = new Person();
+  Finally, you have to manually reset the constructor pointer.  This is a lot to remember
+  to gain the benefit of inheritance so the JavaScript community has mostly turned to
+  a concept called object extension.
+%h3 Extending Objects
+%p
+  Extending objects is not directly supported by the core JavaScript language but is
+  provided by many popular JavaScript Libraries, including
+  =succeed(',') do
+    %a{href: 'http://jquery.com/' } jQuery
+  %a{ href: 'http://lodash.com/' } Lo-Dash
+  (based off of
+  =succeed('),') do
+    %a{ href: 'http://underscorejs.org/' } Underscore
+  =succeed(',') do
+    %a{href: 'http://prototypejs.org/' } Prototype
+  and others.
+%p
+  In Object
+%h3 Further Reading
+%p
+  I recommend reading the
+  %a{ href: 'http://zeekat.nl/articles/constructors-considered-mildly-confusing.html' } Zeekat blog
+  for a more detailed discussion on JavaScript's constructors and prototype chain.
+%h3 General JavaScript Resources
 %p
   Many online resources for learning JavaScript are not object oriented and do not adhere
   to the best practices of master JavaScript programmers. These are the best resources I
