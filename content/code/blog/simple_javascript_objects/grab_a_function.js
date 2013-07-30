@@ -11,7 +11,7 @@ function Logger(message) {
   // return the logger.  Don't use parentheses to
   // return the function object rather than the
   // result of the function
-  return logger
+  return logger;
 }
 
 // Each Logger returns a custom function!
