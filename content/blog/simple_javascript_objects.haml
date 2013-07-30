@@ -4,39 +4,50 @@ created_at: 2013-07-29
 featured_image: /images/blog/simple_javascript_objects/
 landscape: true
 techs:
-  -
-description: ""
-keywords: []
+  - JavaScript
+description: "A Ruby developer's revelations about how simple JavaScript objects are and how to take advantage of this simplicity with some built-in objects."
+keywords: [learning, revelation, simple]
 ---
 %p
-  Writing code with objects helps us to build extensible applications that follow the
-  =succeed('.') do
-    =link_to 'Single Responsibility Principle', '/blog/single_responsibility_principle/'
-  JavaScript's patterns of using objects are significantly different than Ruby so I've
-  decided to focus on this topic.
+  As a Ruby developer, I was surprised to find out how simple JavaScript objects can be
+  and I decided to write up this summary of my revelations.
+%h3 Revelation #1: JavaScript Objects Are Like Ruby Hashes
 %p
   JavaScript objects are
   =succeed(',') do
     %a{ href: 'http://en.wikipedia.org/wiki/Associative_array' } dictionaries
-  similar to a Ruby Hash.
-  They contain properties (like words in the dictionary) that may be looked up to
-  retrieve the value.
-  This value may be data of any type (primitives, strings, or functions).
-  When the value of a property is a function, it is called a method.
-  The most basic JavaScript objects is
-  =succeed('.') do
-    %span.code {}
+  or associative arrays (just like a Ruby Hash).
+
+  JavaScript objects can contain properties with associated values (like words and
+  their definitions in the dictionary) that may be accessed to retrieve the value.
+
+  When the value of a property is a function, we call it a method.
 
 .sticky
   %p
-    Learn faster by trying these examples in your browser's JavaScript console: ⌥⌘J in Chrome (Mac),
+    Try these examples in your browser's JavaScript console: ⌥⌘J in Chrome (Mac),
     =succeed('.') do
       %a{ href: 'http://webmasters.stackexchange.com/questions/8525/how-to-open-the-javascript-console-in-different-browsers'} other browsers
 
 =render('_code_block', item: @item, file: 'objects', language: 'js')
 
+%h3 Revelation #2: Functions and Arrays are Objects Too!
 %p
-  A JavaScript Function is a special type of object because it can be used as a constructor
-  to build new objects:
+  Some of the built-in JavaScript objects inherit from Object.
 
-=render('_code_block', item: @item, file: 'function_as_constructor', language: 'js')
+=render('_code_block', item: @item, file: 'function_and_array_objects', language: 'js')
+
+%p
+  Additional built-in objects which inherit from Object are Date, RegExp, and Error.
+
+%h3 Revelation #3: Get a Copy of a Function - Afterall it's Just an Object
+%p
+  In Ruby, there is rarely any difference between a function call with or without parentheses.
+
+  In Javascript, however, if you don't include parentheses after a function, you get the function
+  object back.
+
+  This allows you to grab copies of functions and use them elsewhere:
+
+=render('_code_block', item: @item, file: 'grab_a_function', language: 'js')
+
