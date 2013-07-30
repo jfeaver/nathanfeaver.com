@@ -1,0 +1,42 @@
+---
+title: "Simple JavaScript Objects"
+created_at: 2013-07-29
+featured_image: /images/blog/simple_javascript_objects/
+landscape: true
+techs:
+  -
+description: ""
+keywords: []
+---
+%p
+  Writing code with objects helps us to build extensible applications that follow the
+  =succeed('.') do
+    =link_to 'Single Responsibility Principle', '/blog/single_responsibility_principle/'
+  JavaScript's patterns of using objects are significantly different than Ruby so I've
+  decided to focus on this topic.
+%p
+  JavaScript objects are
+  =succeed(',') do
+    %a{ href: 'http://en.wikipedia.org/wiki/Associative_array' } dictionaries
+  similar to a Ruby Hash.
+  They contain properties (like words in the dictionary) that may be looked up to
+  retrieve the value.
+  This value may be data of any type (primitives, strings, or functions).
+  When the value of a property is a function, it is called a method.
+  The most basic JavaScript objects is
+  =succeed('.') do
+    %span.code {}
+
+.sticky
+  %p
+    Learn faster by trying these examples in your browser's JavaScript console: ⌥⌘J in Chrome (Mac),
+    =succeed('.') do
+      %a{ href: 'http://webmasters.stackexchange.com/questions/8525/how-to-open-the-javascript-console-in-different-browsers'} other browsers
+
+=render('_code_block', item: @item, file: 'objects', language: 'js')
+
+%p
+  A JavaScript Function is a special type of object because it can be used as a constructor
+  to build new objects:
+
+=render('_code_block', item: @item, file: 'function_as_constructor', language: 'js')
