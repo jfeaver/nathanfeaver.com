@@ -34,13 +34,20 @@
 }
 
 article pre {
-  color: #829496;
+  color: #AAA;
   background-color: #002834;
   padding: 8px;
   margin: 0.9em 0;
   overflow: auto;
   overflow-x: scroll;
   border-radius: 5px;
+}
+
+span.code {
+  color: #AAA;
+  background-color: #002834;
+  padding: 2px;
+  border-radius: 2px;
 }
 
 article code {
