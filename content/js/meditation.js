@@ -36,38 +36,29 @@
     return '<p>' + content + '</p>';
   };
 
-  var readings_url = 'assets/readings/' + month + '.json';
+  var readings_url = 'assets/readings/' + month + '_' + zero_padded(d.getDate()) + '.json';
   $.getJSON(
     // json endpoint
     readings_url,
     // The success callback
-    function(json) {
-      var readings = json[month];
-      // find the right reading
-      for (var i = 0; i < readings.length; i++) {
-        var reading = readings[i];
-        if (reading.date == String(d.getDate()) && reading.time == time) {
-          // Gather up the scripture passages
-          var passages = [];
-          $.each(reading.verses, function(i) {
-            var verse = reading.verses[i];
-            var reference = verse.reference;
-            passages.push(passage_partial(verse.passage, reference.book, reference.chapter, reference.verse));
-          });
-          var all_passages = passages.join('');
-          $('.scripRef').html(all_passages);
-          // TODO Get the full reading
-          var paragraphs = [];
-          $.each(reading.reading, function(i) {
-            var paragraph = reading.reading[i];
-            paragraphs.push(paragraph_partial(paragraph));
-          });
-          $('.reading').html(paragraphs.join(''));
-          // no need to loop any further
-          break;
-        }
-      // \loop through readings
-      }
+    function(today) {
+      // Get the entry object and use the morning or evening reading depending on time
+      var reading = today.entry[time];
+      var passages = [];
+      $.each(reading.verses, function(i) {
+        var verse = reading.verses[i];
+        var reference = verse.reference;
+        passages.push(passage_partial(verse.passage, reference.book, reference.chapter, reference.verse));
+      });
+      var all_passages = passages.join('');
+      $('.scripRef').html(all_passages);
+      var paragraphs = [];
+      $.each(reading.reading, function(i) {
+        var paragraph = reading.reading[i];
+        paragraphs.push(paragraph_partial(paragraph));
+      });
+      $('.reading').html(paragraphs.join(''));
+
     // \callback
     }
   // \getJSON
