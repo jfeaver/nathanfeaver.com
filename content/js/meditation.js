@@ -9276,11 +9276,14 @@ var _jfeaver$meditation$MorningAndEvening$paragraph = function (readingParagraph
 	return A2(
 		_elm_lang$html$Html$p,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html$text(readingParagraph)
-			]));
+				A2(
+				_elm_lang$html$Html_Attributes$property,
+				'innerHTML',
+				_elm_lang$core$Json_Encode$string(readingParagraph))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _jfeaver$meditation$MorningAndEvening$verse = function (readingVerse) {
 	return A2(
@@ -9314,14 +9317,7 @@ var _jfeaver$meditation$MorningAndEvening$verse = function (readingVerse) {
 								}),
 							'',
 							_elm_lang$core$Native_List.fromArray(
-								[
-									'-',
-									readingVerse.reference.book,
-									' ',
-									_elm_lang$core$Basics$toString(readingVerse.reference.chapter),
-									':',
-									_elm_lang$core$Basics$toString(readingVerse.reference.verse)
-								])))
+								['-', readingVerse.reference.book, ' ', readingVerse.reference.chapter, ':', readingVerse.reference.verse])))
 					]))
 			]));
 };
@@ -9348,50 +9344,33 @@ var _jfeaver$meditation$MorningAndEvening$view = function (model) {
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('container')
+				_elm_lang$html$Html_Attributes$id('main')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_elm_lang$html$Html$div,
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$id('main')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$h2,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text(
-								_jfeaver$meditation$MorningAndEvening$title(model.readingTime))
-							])),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('verses')
-							]),
-						A2(_elm_lang$core$List$map, _jfeaver$meditation$MorningAndEvening$verse, model.reading.verses)),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('reading-body')
-							]),
-						A2(_elm_lang$core$List$map, _jfeaver$meditation$MorningAndEvening$paragraph, model.reading.paragraphs))
+						_elm_lang$html$Html$text(
+						_jfeaver$meditation$MorningAndEvening$title(model.readingTime))
 					])),
 				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$id('footer')
+						_elm_lang$html$Html_Attributes$class('verses')
 					]),
+				A2(_elm_lang$core$List$map, _jfeaver$meditation$MorningAndEvening$verse, model.reading.verses)),
+				A2(
+				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
-					[]))
+					[
+						_elm_lang$html$Html_Attributes$class('reading-body')
+					]),
+				A2(_elm_lang$core$List$map, _jfeaver$meditation$MorningAndEvening$paragraph, model.reading.paragraphs))
 			]));
 };
 var _jfeaver$meditation$MorningAndEvening$model = {readingTime: _jfeaver$meditation$ReadingTime$model, reading: _jfeaver$meditation$Reading$model};
