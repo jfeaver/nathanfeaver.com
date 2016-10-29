@@ -8,14 +8,13 @@ script: '/js/jquery-1-10-1-min.js'
 app_script: '/js/meditation.js'
 ---
 %main
-  %header
-    %h2
-      Reading for:
-      %time
-  .scripRef
-  .reading
+  %header#morning-and-evening-app
 %footer
   %p
     =succeed(',') do
       %cite Morning and Evening
     by Charles Spurgeon
+:javascript
+  window.onload = function() {
+    Elm.MorningAndEveningMain.embed(document.getElementById('morning-and-evening-app'));
+  };
