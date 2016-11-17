@@ -7,7 +7,7 @@ stylesheets:
 script: '/js/jquery-1-10-1-min.js'
 app_script: '/js/meditation.js'
 ---
-#morning-and-evening-app
+#meditation-app
 %footer
   %p
     =succeed(',') do
@@ -15,5 +15,5 @@ app_script: '/js/meditation.js'
     by Charles Spurgeon
 :javascript
   window.onload = function() {
-    Elm.MorningAndEveningMain.embed(document.getElementById('morning-and-evening-app'));
+    Elm.MeditationMain.embed(document.getElementById('meditation-app'));
   };
