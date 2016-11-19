@@ -6,3 +6,4 @@ tmp/
 .sass-cache/
 .rm-temp.sh
 blog_post_ideas.md
+content/js/meditation.js
