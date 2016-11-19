@@ -1,5 +1,5 @@
 =render '_simple_header'
 .container
   =yield
-  -if @item[:app_script]
-    %script{ type: 'text/javascript', src: @item[:app_script] }
+  - (@item[:body_scripts] || []).each do |script|
+    %script{ type: 'text/javascript', src: script }
