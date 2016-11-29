@@ -9,6 +9,7 @@ body {
 }
 
 .container {
+  position: relative;
   max-width: 550px;
   width: 95%;
   margin: 20px auto;
@@ -16,7 +17,6 @@ body {
 
 .article {
   padding: 20px 40px;
-  margin: 20px 0;
   background-color: white;
   -webkit-box-shadow: 0px 0px 7px 0px #777;
           box-shadow: 0px 0px 7px 0px #777;
@@ -27,6 +27,32 @@ body {
 
 footer {
   color: #888;
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 25px;
+  top: 20px;
+}
+
+.tool-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.time-select-container {
+  background: white;
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.time-select-nearby-selectors {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 7px;
 }
 
 // DATEPICKER
@@ -45,8 +71,12 @@ $datepicker-row-border-color: #F2F2F2;
   position: relative;
 }
 
-.#{$datepicker-ns}input:focus {
-  outline: 0;
+.#{$datepicker-ns}input {
+  width: 150px;
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .#{$datepicker-ns}picker {
